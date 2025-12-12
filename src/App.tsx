@@ -1,33 +1,32 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Experience from './components/Experience'
+import NavigationBar from './components/NavigationBar'
+import Projects from './components/Projects'
+import SectionBreak from './components/SectionBreak'
+import Welcome from './components/Welcome'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isDarkModeActive, setIsDarkModeActive] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} alt="React logo" />
-        </a>
+    <div className={isDarkModeActive ? "dark" : ""}>
+      <NavigationBar isDarkModeActive={isDarkModeActive} setIsDarkModeActive={setIsDarkModeActive} />
+      <div className="max-w-lg mx-auto min-h-screen flex flex-col p-5">
+        <div className="grow">
+          <Welcome />
+          <SectionBreak />
+          <Projects />
+          <SectionBreak />
+          <Experience />
+        </div>
+        <footer>
+          <SectionBreak />
+          <h1>
+            Footer items
+          </h1>
+        </footer>
       </div>
-      <h1>Vite + React</h1>
-      <div>
-        <button onClick={() => setCount((count) => count + 1) }>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 

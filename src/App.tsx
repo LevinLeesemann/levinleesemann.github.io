@@ -12,7 +12,7 @@ export default function App() {
   return (
     <div className={isDarkModeActive ? "dark" : ""}>
       <div className="bg-background">
-        <div className="flex flex-col min-h-dvh">
+        <div className="flex flex-col max-w-5xl min-h-dvh mx-auto px-8">
           <div className="grow">
             <Welcome />
             <SectionBreak />

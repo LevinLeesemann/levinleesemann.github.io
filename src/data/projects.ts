@@ -15,7 +15,7 @@ export const projects: Project[] = [
     description: "Machine learning toolchain that converts drumline audio into symbolic transcriptions",
     languages: ["Java"],
     technologies: [],
-    thumbnailUrl: "",
+    thumbnailUrl: "https://raw.githubusercontent.com/LevinLeesemann/Tempus/refs/heads/main/assets/logos/default.png",
     sourceCodeUrl: "https://github.com/LevinLeesemann/drumline-transcriber",
   },
   {
@@ -23,7 +23,7 @@ export const projects: Project[] = [
     description: "Monitors job listings and publishes real-time notifications to subscribing devices",
     languages: ["Python"],
     technologies: [],
-    thumbnailUrl: "",
+    thumbnailUrl: "https://raw.githubusercontent.com/LevinLeesemann/Tempus/refs/heads/main/assets/logos/default.png",
     sourceCodeUrl: "https://github.com/LevinLeesemann/job-posting-notifier",
   },
   {
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     description: "Combines CPU and GPU processing to accelerate single-source shortest path computation on graphs",
     languages: ["C++", "Cuda"],
     technologies: [],
-    thumbnailUrl: "",
+    thumbnailUrl: "https://raw.githubusercontent.com/LevinLeesemann/Tempus/refs/heads/main/assets/logos/default.png",
     sourceCodeUrl: "https://github.com/LevinLeesemann/Hybrid-SSSP",
   },
 ]

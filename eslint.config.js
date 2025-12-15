@@ -31,6 +31,7 @@ export default defineConfig([
     rules: {
       "comma-dangle": ["error", "always-multiline"],
       "semi": ["error", "never"],
+      "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/no-confusing-void-expression": "off",
       "@typescript-eslint/no-non-null-assertion": "off",
     }

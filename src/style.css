@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
   --font-sans: "Roboto", system-ui, sans-serif;
+
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+  --color-background: var(--background);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-section-break: var(--section-break);
+  --color-text: var(--text);
+  --color-text-muted: var(--color-zinc-500);
+}
+
+:root {
+  --accent: var(--color-emerald-500);
+  --accent-muted: var(--color-emerald-50);
+  --background: var(--color-zinc-50);
+  --border: var(--color-zinc-200);
+  --surface: var(--color-zinc-100);
+  --section-break: var(--color-zinc-100);
+  --text: oklch(0% 0 0);
+}
+
+.dark {
+  --accent: var(--color-emerald-400);
+  --accent-muted: var(--color-emerald-950);
+  --background: var(--color-zinc-950);
+  --border: var(--color-zinc-800);
+  --surface: var(--color-zinc-900);
+  --section-break: var(--color-zinc-900);
+  --text: oklch(100% 0 0);
 }

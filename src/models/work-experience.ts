@@ -6,4 +6,5 @@ export type WorkExperience = {
   employer: string
   specialization?: WorkExperienceSpecialization[]
   type: WorkExperienceType[]
+  isActive?: boolean
 }

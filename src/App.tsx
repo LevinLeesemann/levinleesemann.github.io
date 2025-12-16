@@ -3,7 +3,6 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import Experience from './sections/Experience'
 import Footer from './sections/Footer'
 import Projects from './sections/Projects'
-import SectionBreak from './sections/SectionBreak'
 import Welcome from './sections/Welcome'
 
 export default function App() {
@@ -48,9 +47,7 @@ export default function App() {
         <div className="flex flex-col max-w-5xl min-h-dvh mx-auto px-8">
           <div className="grow">
             <Welcome />
-            <SectionBreak />
             <Projects />
-            <SectionBreak />
             <Experience />
           </div>
           <Footer />

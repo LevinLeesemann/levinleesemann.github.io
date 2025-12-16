@@ -6,12 +6,14 @@ export const workExperiences: WorkExperience[] = [
     employer: "John Deere",
     specialization: ["Backend"],
     type: ["Full-time"],
+    isActive: true,
   },
   {
     title: "Software Engineer",
     employer: "Kick Snare Hat Apps",
     specialization: ["Systems", "Backend"],
     type: ["Contract", "Part-time"],
+    isActive: true,
   },
   {
     title: "Software Engineer II",

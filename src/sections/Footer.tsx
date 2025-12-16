@@ -1,10 +1,7 @@
-import SectionBreak from "./SectionBreak"
-
 export default function Footer() {
   return (
     <footer>
-      <SectionBreak />
-      <h1 className="text-text">
+      <h1 className="text-text mt-32">
         Footer items
       </h1>
     </footer>

@@ -27,6 +27,14 @@ export const projects: Project[] = [
     sourceCodeUrl: "https://github.com/LevinLeesemann/job-posting-notifier",
   },
   {
+    title: "Portfolio Website",
+    description: "Monitors job listings and publishes real-time notifications to subscribing devices",
+    languages: ["TypeScript"],
+    technologies: [],
+    thumbnailUrl: "https://raw.githubusercontent.com/LevinLeesemann/Tempus/refs/heads/main/assets/logos/default.png",
+    sourceCodeUrl: "https://github.com/LevinLeesemann/portfolio",
+  },
+  {
     title: "Hybrid SSSP",
     description: "Combines CPU and GPU processing to accelerate single-source shortest path computation on graphs",
     languages: ["C++", "Cuda"],

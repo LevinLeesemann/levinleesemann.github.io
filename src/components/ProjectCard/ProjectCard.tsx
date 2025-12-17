@@ -15,10 +15,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </a>
       <div className="flex flex-col gap-2">
         <div className="flex flex-row flex-wrap gap-2 text-sm">
-          {project.technologies.map(language => <Chip key={language} color="text" label={language}></Chip>)}
+          {project.technologies.map(language => <Chip key={language} className="text-text" label={language}></Chip>)}
         </div>
         <div className="flex flex-row flex-wrap gap-2 text-sm">
-          {project.languages.map(language => <Chip key={language} color="accent" label={language}></Chip>)}
+          {project.languages.map(language => <Chip key={language} className="text-accent bg-accent-muted" label={language}></Chip>)}
         </div>
       </div>
       <p className="text-text-muted">{project.description}</p>

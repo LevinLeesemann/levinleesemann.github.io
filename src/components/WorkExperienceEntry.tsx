@@ -23,7 +23,7 @@ export default function WorkExperienceEntry(props: ExperienceItemProps) {
             {props.workExperience.title}
           </p>
           <div className="flex flex-row gap-2 text-xs">
-            {props.workExperience.specialization?.map(specialization => <Chip key={specialization} color="accent" label={specialization} />)}
+            {props.workExperience.specialization?.map(specialization => <Chip key={specialization} className="text-accent bg-accent-muted" label={specialization} />)}
           </div>
         </div>
         <p className="text-text-muted text-sm">

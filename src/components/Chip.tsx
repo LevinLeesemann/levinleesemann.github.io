@@ -1,10 +1,10 @@
 type ChipProps = {
-  color: "accent" | "text"
+  className: string
   label: string
 }
 
 export default function Chip(props: ChipProps) {
   return (
-    <p className={`text-${props.color} border ${props.color === "text" ? "" : "bg-accent-muted"} rounded-full px-2`}>{props.label}</p>
+    <p className={`border rounded-full px-2 ${props.className}`}>{props.label}</p>
   )
 }

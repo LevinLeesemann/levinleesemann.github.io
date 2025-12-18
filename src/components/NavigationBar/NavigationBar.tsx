@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react"
+import { DE, US } from "country-flag-icons/react/3x2"
+import { useEffect, useRef, useState } from "react"
 import { GoBriefcase, GoChevronUp, GoFileCode, GoMoon, GoSun } from "react-icons/go"
 import { PiHandWaving } from "react-icons/pi"
 import NavigationBarButton from "./NavigationBarButton"
@@ -11,53 +12,59 @@ type NavigationBarProps = {
 }
 
 export default function NavigationBar(props: NavigationBarProps) {
-  const navigationBar = useRef<HTMLDivElement>(null)
-  const navigationBarToggle = useRef<HTMLDivElement>(null)
+  const handle = useRef<HTMLDivElement>(null)
   const previousScrollLocation = useRef(0)
+  const [isHidden, setIsHidden] = useState(false)
+  const [locale, setLocale] = useState(navigator.language.split("-").at(-1))
 
-  function resetRef(ref: React.RefObject<HTMLDivElement | null>, transformation: string) {
-    ref.current?.classList.remove(transformation)
+  function show() {
+    handle.current?.classList.remove("translate-y-[70%]")
+    setIsHidden(false)
   }
 
-  function resetRefs() {
-    resetRef(navigationBar, "translate-y-[150%]")
-    resetRef(navigationBarToggle, "-translate-y-[150%]")
+  function hide() {
+    handle.current?.classList.add("translate-y-[70%]")
+    setIsHidden(true)
   }
 
-  function updateRef(ref: React.RefObject<HTMLDivElement | null>, transformation: string, scrollLocation: number) {
-    const hide = scrollLocation > previousScrollLocation.current && scrollLocation > 70
-    ref.current?.classList.toggle(transformation, hide)
+  function toggleVisibility() {
+    (isHidden ? show : hide)()
   }
 
   useEffect(() => {
-    const onScrollListener = () => {
+    const onScroll = () => {
       const scrollLocation = window.scrollY
+      const isScrollingDown = scrollLocation - previousScrollLocation.current > 0
 
-      updateRef(navigationBar, "translate-y-[150%]", scrollLocation)
-      updateRef(navigationBarToggle, "-translate-y-[150%]", scrollLocation)
+      if (isScrollingDown && !isHidden) {
+        hide()
+      } else if (!isScrollingDown && isHidden) {
+        show()
+      }
 
       previousScrollLocation.current = scrollLocation
     }
 
-    window.addEventListener('scroll', onScrollListener, { passive: true })
-    return () => { window.removeEventListener('scroll', onScrollListener) }
-  }, [])
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [isHidden])
 
   return (
-    <div>
-      <div ref={navigationBarToggle} className="fixed flex flex-row inset-x-0 -bottom-16 sm:-bottom-18 justify-center gap-2 pointer-events-none transition-[translate] duration-250">
-        <button onClick={resetRefs} className="flex flex-row items-center justify-center text-text hover:cursor-pointer p-2.5 sm:p-3 size-10 sm:size-12 pointer-events-auto">
-          <GoChevronUp className="size-full" />
-        </button>
-      </div>
-      <div ref={navigationBar} className="fixed flex flex-row inset-x-0 bottom-4 justify-center gap-2 pointer-events-none transition-[translate] duration-250">
+    <div ref={handle} className="fixed inset-x-0 bottom-4 flex flex-col items-center gap transition-transform duration-250">
+      <button onClick={toggleVisibility} className="flex flex-row items-center justify-center text-text p-2.5 sm:p-3 size-10 sm:size-12">
+        <GoChevronUp className={`size-full transition-transform duration-250 ${isHidden ? "rotate-0" : "rotate-180"}`} />
+      </button>
+      <div className="flex flex-row justify-center gap-2 pointer-events-none">
+        <NavigationBarGroup>
+          <NavigationBarButton icon={props.isDarkModeActive ? GoMoon : GoSun} onClick={() => props.setIsDarkModeActive(!props.isDarkModeActive)} />
+        </NavigationBarGroup>
         <NavigationBarGroup>
           <NavigationBarButton icon={PiHandWaving} isActive={props.activeSection === "welcome"} onClick={() => goTo("welcome")} />
           <NavigationBarButton icon={GoFileCode} isActive={props.activeSection === "projects"} onClick={() => goTo("projects")} />
           <NavigationBarButton icon={GoBriefcase} isActive={props.activeSection === "experience"} onClick={() => goTo("experience")} />
         </NavigationBarGroup>
         <NavigationBarGroup>
-          <NavigationBarButton icon={props.isDarkModeActive ? GoMoon : GoSun} onClick={() => props.setIsDarkModeActive(!props.isDarkModeActive)} />
+          <NavigationBarButton icon={locale === "DE" ? DE : US} onClick={() => setLocale(locale === "DE" ? "US" : "DE")} />
         </NavigationBarGroup>
       </div>
     </div>

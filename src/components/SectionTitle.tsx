@@ -1,9 +1,14 @@
+import MaybeClickable from "./MaybeClickable"
+
 type SectionTitleProps = {
   children: React.ReactNode
+  onClick?: () => void
 }
 
 export default function SectionTitle(props: SectionTitleProps) {
   return (
-    <h1 className="font-bold mb-8 text-text text-3xl sm:text-4xl md:text-5xl">{props.children}</h1>
+    <MaybeClickable condition={!!props.onClick} onClick={props.onClick ?? (() => console.error("Shouldn't happen"))}>
+      <h1 className="inline-block font-bold mb-8 text-text text-3xl sm:text-4xl md:text-5xl">{props.children}</h1>
+    </MaybeClickable>
   )
 }

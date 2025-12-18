@@ -24,7 +24,6 @@ export default function App() {
           }
 
           setActiveSection(intersectingSection)
-          window.history.replaceState(null, "", `#${intersectingSection}`)
         })
       },
       {
@@ -44,7 +43,7 @@ export default function App() {
   return (
     <div className={isDarkModeActive ? "dark" : ""}>
       <div className="bg-background">
-        <div className="flex flex-col min-h-lvh px-8">
+        <div className="flex flex-col px-8">
           <div className="grow max-w-5xl mx-auto">
             <Welcome />
             <Projects />

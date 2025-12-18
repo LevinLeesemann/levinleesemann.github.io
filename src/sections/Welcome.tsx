@@ -3,7 +3,7 @@ import SectionTitle from "../components/SectionTitle"
 
 export default function Welcome() {
   return (
-    <section id="welcome" className="flex flex-col min-h-screen justify-center">
+    <section id="welcome" className="flex flex-col min-h-dvh justify-center">
       <SectionTitle>
         Hi, I'm Levin!<br />
         A software engineer & musician

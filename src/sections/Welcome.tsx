@@ -1,14 +1,19 @@
 import SectionSubtitle from "../components/SectionSubtitle"
 import SectionTitle from "../components/SectionTitle"
+import type { Translation } from "../models/translation"
 
-export default function Welcome() {
+type WelcomeProps = {
+  translation: Translation
+}
+
+export default function Welcome(props: WelcomeProps) {
   return (
     <section id="welcome" className="flex flex-col min-h-dvh justify-center">
       <SectionTitle>
-        Hi, I'm Levin!<br />
-        A software engineer & musician
+        {props.translation.welcomeSection.title.top}<br />
+        {props.translation.welcomeSection.title.bottom}
       </SectionTitle>
-      <SectionSubtitle>Focussing on cloud-based backend systems & audio/music systems across platforms</SectionSubtitle>
+      <SectionSubtitle>{props.translation.welcomeSection.subtitle}</SectionSubtitle>
     </section>
   )
 }

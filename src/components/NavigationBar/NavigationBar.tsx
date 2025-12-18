@@ -8,14 +8,15 @@ import NavigationBarGroup from "./NavigationBarGroup"
 type NavigationBarProps = {
   activeSection: string
   isDarkModeActive: boolean
+  region: string
   setIsDarkModeActive: (isActive: boolean) => void
+  setRegion: (region: string) => void
 }
 
 export default function NavigationBar(props: NavigationBarProps) {
   const handle = useRef<HTMLDivElement>(null)
   const previousScrollLocation = useRef(0)
   const [isHidden, setIsHidden] = useState(false)
-  const [locale, setLocale] = useState(navigator.language.split("-").at(-1)?.toUpperCase())
 
   function show() {
     handle.current?.classList.remove("translate-y-[70%]")
@@ -64,7 +65,7 @@ export default function NavigationBar(props: NavigationBarProps) {
           <NavigationBarButton icon={GoBriefcase} isActive={props.activeSection === "experience"} onClick={() => goTo("experience")} />
         </NavigationBarGroup>
         <NavigationBarGroup>
-          <NavigationBarButton icon={locale === "DE" ? DE : US} onClick={() => setLocale(locale === "DE" ? "US" : "DE")} />
+          <NavigationBarButton icon={props.region === "DE" ? DE : US} onClick={() => props.setRegion(props.region === "DE" ? "US" : "DE")} />
         </NavigationBarGroup>
       </div>
     </div>

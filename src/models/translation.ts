@@ -40,7 +40,10 @@ export type Translation = {
     subtitle: Subtitle
   }
   footerSection: {
-    builtWithText: string
+    builtWithText: {
+      head: string
+      tail?: string
+    }
     drummerIconText: string
   }
 }

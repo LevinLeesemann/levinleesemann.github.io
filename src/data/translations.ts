@@ -68,7 +68,9 @@ const translations: Record<string, Translation> = {
       },
     },
     footerSection: {
-      builtWithText: "Built with",
+      builtWithText: {
+        head: "Built from scratch with",
+      },
       drummerIconText: "Drummer icon by",
     },
   },
@@ -130,7 +132,10 @@ const translations: Record<string, Translation> = {
       },
     },
     footerSection: {
-      builtWithText: "Erstellt mit",
+      builtWithText: {
+        head: "Von Grund auf mit",
+        tail: "entwickelt",
+      },
       drummerIconText: "Schlagzeuger-Symbol von",
     },
   },

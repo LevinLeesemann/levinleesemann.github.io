@@ -27,7 +27,7 @@ const translations: Record<string, Translation> = {
     welcomeSection: {
       title: {
         top: "Hi, I'm Levin!",
-        bottom: "Software engineer & musician",
+        bottom: "Software Engineer & Musician",
       },
       subtitle: "Focussing on cloud-based backend systems & audio/music systems across platforms",
     },
@@ -139,7 +139,7 @@ const translations: Record<string, Translation> = {
     welcomeSection: {
       title: {
         top: "Hi, ich bin Levin!",
-        bottom: "Softwareingenieur & Musiker",
+        bottom: "Software Engineer & Musiker",
       },
       subtitle: "Mit Fokus auf cloudbasierte Backend-Systeme und plattformübergreifende Audio-/Musiksysteme",
     },

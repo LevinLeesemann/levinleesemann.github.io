@@ -13,7 +13,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <article className="flex flex-col gap-6">
       <h1 className="text-text md:text-lg">{props.translation.projects[props.project.id].title}</h1>
-      <a href={props.project.downloadUrl ?? props.project.sourceCodeUrl} target="_blank">
+      <a href={props.project.resources.at(0)?.url} target="_blank">
         <img src={props.isDarkModeActive ? props.project.thumbnailUrl.dark : props.project.thumbnailUrl.light} className="border-0 rounded-lg w-max aspect-2/1 object-cover hover:scale-105 transition-[scale] duration-250" alt="Random image" />
       </a>
       <div className="flex flex-col gap-2">
@@ -25,9 +25,8 @@ export default function ProjectCard(props: ProjectCardProps) {
         </div>
       </div>
       <p className="text-text-muted">{props.translation.projects[props.project.id].description}</p>
-      <div className="flex flex-row gap-2 mt-auto">
-        {props.project.downloadUrl && <ProjectCardLink label={props.translation.projectLabels.download} link={props.project.downloadUrl} />}
-        <ProjectCardLink label={props.translation.projectLabels.sourceCode} link={props.project.sourceCodeUrl} />
+      <div className="flex flex-row flex-wrap gap-2 mt-auto">
+        {props.project.resources.map(resource => <ProjectCardLink key={resource.labelId} label={props.translation.project.resourceLabel[resource.labelId]} link={resource.url} />)}
       </div>
     </article>
   )

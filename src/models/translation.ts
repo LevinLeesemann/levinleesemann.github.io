@@ -25,9 +25,13 @@ export type Translation = {
     }
     subtitle: string
   }
-  projectLabels: {
-    download: string
-    sourceCode: string
+  project: {
+    resourceLabel: {
+      article: string
+      download: string
+      researchPaper: string
+      sourceCode: string
+    }
   }
   projectsSection: {
     title: string

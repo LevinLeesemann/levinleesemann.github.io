@@ -38,9 +38,13 @@ const translations: Record<string, Translation> = {
         tail: "profile",
       },
     },
-    projectLabels: {
-      download: "Download",
-      sourceCode: "Source code",
+    project: {
+      resourceLabel: {
+        article: "Article",
+        download: "Download",
+        researchPaper: "Research paper",
+        sourceCode: "Source code",
+      },
     },
     projects: {
       drumlineTranscriber: {
@@ -150,9 +154,13 @@ const translations: Record<string, Translation> = {
         tail: "Profil",
       },
     },
-    projectLabels: {
-      download: "Herunterladen",
-      sourceCode: "Quellcode",
+    project: {
+      resourceLabel: {
+        article: "Artikel",
+        download: "Herunterladen",
+        researchPaper: "Wissenschaftliche Arbeit",
+        sourceCode: "Quellcode",
+      },
     },
     projects: {
       drumlineTranscriber: {

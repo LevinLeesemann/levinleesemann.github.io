@@ -13,13 +13,13 @@ const translations: Record<string, Translation> = {
   english: {
     welcomeSection: {
       title: {
-        top: "Hi, I'm Levin",
+        top: "Hi, I'm Levin!",
         bottom: "Software engineer & musician",
       },
       subtitle: "Focussing on cloud-based backend systems & audio/music systems across platforms",
     },
     projectsSection: {
-      title: "Things I've done outside of work",
+      title: "Outside of work",
       subtitle: {
         head: "To explore even more projects visit my",
         tail: "profile",
@@ -48,23 +48,27 @@ const translations: Record<string, Translation> = {
       },
     },
     experienceSection: {
-      title: "Where I've spent most of my time",
+      title: "My main gigs",
       subtitle: {
         head: "For more details about each of my roles visit my",
         tail: "profile",
       },
     },
+    footerSection: {
+      builtWithText: "Built with",
+      drummerIconText: "Drummer icon by",
+    },
   },
   german: {
     welcomeSection: {
       title: {
-        top: "Hi, ich bin Levin",
+        top: "Hi, ich bin Levin!",
         bottom: "Softwareingenieur & Musiker",
       },
       subtitle: "Mit Fokus auf cloudbasierte Backend-Systeme und plattformübergreifende Audio-/Musiksysteme",
     },
     projectsSection: {
-      title: "Was ich außerhalb der Arbeit mache",
+      title: "Außerhalb der Arbeit",
       subtitle: {
         head: "Um noch mehr meiner Projekte zu entdecken, besuche mein",
         tail: "Profil",
@@ -93,11 +97,15 @@ const translations: Record<string, Translation> = {
       },
     },
     experienceSection: {
-      title: "Wo ich die meiste Zeit verbracht habe",
+      title: "Meine Hauptjobs",
       subtitle: {
         head: "Für mehr Details zu meinen Jobs besuche mein",
         tail: "Profil",
       },
+    },
+    footerSection: {
+      builtWithText: "Erstellt mit",
+      drummerIconText: "Schlagzeuger-Symbol von",
     },
   },
 }

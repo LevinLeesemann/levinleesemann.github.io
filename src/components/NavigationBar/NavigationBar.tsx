@@ -14,8 +14,11 @@ type NavigationBarProps = {
 }
 
 export default function NavigationBar(props: NavigationBarProps) {
+  const scrollSensitivity = 10
+
   const handle = useRef<HTMLDivElement>(null)
-  const previousScrollLocation = useRef(0)
+  const previousScrollLocation = useRef(window.scrollY)
+
   const [isHidden, setIsHidden] = useState(false)
 
   function show() {
@@ -35,11 +38,12 @@ export default function NavigationBar(props: NavigationBarProps) {
   useEffect(() => {
     const onScroll = () => {
       const scrollLocation = window.scrollY
-      const isScrollingDown = scrollLocation - previousScrollLocation.current > 0
+      const isScrollingDown = scrollLocation - previousScrollLocation.current > scrollSensitivity
+      const isScrollingUp = previousScrollLocation.current - scrollLocation > scrollSensitivity
 
       if (isScrollingDown && !isHidden) {
         hide()
-      } else if (!isScrollingDown && isHidden) {
+      } else if (isScrollingUp && isHidden) {
         show()
       }
 
@@ -51,8 +55,8 @@ export default function NavigationBar(props: NavigationBarProps) {
   }, [isHidden])
 
   return (
-    <div ref={handle} className="fixed inset-x-0 bottom-4 flex flex-col items-center gap transition-transform duration-250">
-      <button onClick={toggleVisibility} className="flex flex-row items-center justify-center text-text p-2.5 sm:p-3 size-10 sm:size-12">
+    <div ref={handle} className="z-20 fixed inset-x-0 bottom-4 flex flex-col items-center gap transition-transform duration-250 pointer-events-none">
+      <button onClick={toggleVisibility} className="flex flex-row items-center justify-center text-text p-2.5 sm:p-3 size-10 sm:size-12 hover:cursor-pointer pointer-events-auto">
         <GoChevronUp className={`size-full transition-transform duration-250 ${isHidden ? "rotate-0" : "rotate-180"}`} />
       </button>
       <div className="flex flex-row justify-center gap-2 pointer-events-none">

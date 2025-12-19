@@ -11,7 +11,7 @@ type ExperienceProps = {
 
 export default function Experience(props: ExperienceProps) {
   return (
-    <section id="experience" className="mb-32">
+    <section id="experience" className="flex flex-col gap-8">
       <SectionTitle onClick={() => window.location.replace("/#experience")}>{props.translation.experienceSection.title}</SectionTitle>
       <SectionSubtitle>{props.translation.experienceSection.subtitle.head} <a className="font-bold" href={urls.linkedIn} target="_blank">LinkedIn</a> {props.translation.experienceSection.subtitle.tail}</SectionSubtitle>
       <div className="flex flex-col">

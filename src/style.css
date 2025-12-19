@@ -32,3 +32,22 @@
   --section-break: var(--color-zinc-900);
   --text: oklch(100% 0 0);
 }
+
+.text-shadow {
+  text-shadow:
+    0 0 13px var(--background),
+    0 0 13px var(--background),
+    0 0 13px var(--background),
+    0 0 14px var(--background),
+    0 0 14px var(--background),
+    0 0 14px var(--background),
+    0 0 15px var(--background),
+    0 0 15px var(--background),
+    0 0 15px var(--background),
+    0 0 16px var(--background),
+    0 0 16px var(--background),
+    0 0 16px var(--background),
+    0 0 17px var(--background),
+    0 0 17px var(--background),
+    0 0 17px var(--background);
+}

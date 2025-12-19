@@ -26,4 +26,8 @@ export type Translation = {
     title: string
     subtitle: Subtitle
   }
+  footerSection: {
+    builtWithText: string
+    drummerIconText: string
+  }
 }

@@ -46,13 +46,15 @@ export default function App() {
   return (
     <div className={isDarkModeActive ? "dark" : ""}>
       <div className="bg-background">
-        <div className="flex flex-col px-8">
+        <div className="flex flex-col px-[8%]">
           <div className="grow max-w-5xl mx-auto">
-            <Welcome translation={translation} />
-            <Projects translation={translation} />
-            <Experience translation={translation} />
+            <Welcome isDarkModeActive={isDarkModeActive} translation={translation} />
+            <div className="flex flex-col gap-32">
+              <Projects translation={translation} />
+              <Experience translation={translation} />
+            </div>
           </div>
-          <Footer />
+          <Footer translation={translation} />
         </div>
         <NavigationBar activeSection={activeSection} isDarkModeActive={isDarkModeActive} region={region} setIsDarkModeActive={setIsDarkModeActive} setRegion={setRegion} />
       </div>

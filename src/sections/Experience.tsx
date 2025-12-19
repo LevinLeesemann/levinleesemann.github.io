@@ -1,5 +1,6 @@
-import SectionSubtitle from "../components/SectionSubtitle"
-import SectionTitle from "../components/SectionTitle"
+import Subtitle from "../components/Subtitle"
+import SubtitleLink from "../components/SubtitleLink"
+import Title from "../components/Title"
 import WorkExperienceEntry from "../components/WorkExperienceEntry"
 import { urls } from "../data/urls"
 import { workExperiences } from "../data/work-experiences"
@@ -12,8 +13,10 @@ type ExperienceProps = {
 export default function Experience(props: ExperienceProps) {
   return (
     <section id="experience" className="flex flex-col gap-8">
-      <SectionTitle onClick={() => window.location.replace("/#experience")}>{props.translation.experienceSection.title}</SectionTitle>
-      <SectionSubtitle>{props.translation.experienceSection.subtitle.head} <a className="font-bold" href={urls.linkedIn} target="_blank">LinkedIn</a> {props.translation.experienceSection.subtitle.tail}</SectionSubtitle>
+      <Title onClick={() => window.location.replace("/#experience")}>{props.translation.experienceSection.title}</Title>
+      <Subtitle>
+        {props.translation.experienceSection.subtitle.head} <SubtitleLink label="LinkedIn" url={urls.linkedIn} /> {props.translation.experienceSection.subtitle.tail}
+      </Subtitle>
       <div className="flex flex-col">
         {workExperiences.map(workExperience => <WorkExperienceEntry key={workExperience.id} isFirst={workExperiences.indexOf(workExperience) === 0} isLast={workExperiences.indexOf(workExperience) === workExperiences.length - 1} translation={props.translation} workExperience={workExperience} />)}
       </div>

@@ -21,7 +21,7 @@ export default function Footer(props: FooterProps) {
         </div>
         <div className="flex flex-col gap-2 text-text-muted text-xs sm:text-sm md:text-md text-center">
           <p>{props.translation.footerSection.builtWithText.head} React + Tailwind + Vite{props.translation.footerSection.builtWithText.tail ? ` ${props.translation.footerSection.builtWithText.tail}` : ""}</p>
-          <a href="https://www.flaticon.com/free-animated-icons/drummer" target="_blank" title="drummer animated icons">{props.translation.footerSection.drummerIconText} Freepik - Flaticon</a>
+          <a className="self-center" href="https://www.flaticon.com/free-animated-icons/drummer" target="_blank" title="drummer animated icons">{props.translation.footerSection.drummerIconText} Freepik - Flaticon</a>
         </div>
       </div>
     </footer>

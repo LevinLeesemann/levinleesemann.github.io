@@ -17,12 +17,17 @@ type NavigationBarProps = {
 }
 
 export default function NavigationBar(props: NavigationBarProps) {
-  const scrollSensitivity = 10
+  const scrollSensitivity = 55
 
   const handle = useRef<HTMLDivElement>(null)
-  const previousScrollLocation = useRef(window.scrollY)
+  const previousScrollLocation = useRef(0)
 
   const [isHidden, setIsHidden] = useState(false)
+
+  function goTo(section: string) {
+    window.location.replace(`/#${section}`)
+    setIsHidden(true)
+  }
 
   function show() {
     handle.current?.classList.remove("translate-y-[70%]")
@@ -69,7 +74,7 @@ export default function NavigationBar(props: NavigationBarProps) {
           <NavigationBarButton icon={props.isDarkModeActive ? GoMoon : GoSun} label={props.translation.navigationBar.buttonLabel.lightDarkMode} onClick={() => props.setIsDarkModeActive(!props.isDarkModeActive)} />
         </NavigationBarGroup>
         <NavigationBarGroup>
-          <NavigationBarButton icon={PiHandWaving} isActive={props.activeSection === "welcome"} label={props.translation.navigationBar.buttonLabel.welcome} onClick={() => goTo("welcome")} />
+          <NavigationBarButton icon={PiHandWaving} isActive={props.activeSection === "welcome"} label={props.translation.navigationBar.buttonLabel.welcome} onClick={() => { goTo("welcome") }} />
           <NavigationBarButton icon={GoFileCode} isActive={props.activeSection === "projects"} label={props.translation.navigationBar.buttonLabel.projects} onClick={() => goTo("projects")} />
           <NavigationBarButton icon={GoBriefcase} isActive={props.activeSection === "experience"} label={props.translation.navigationBar.buttonLabel.experience} onClick={() => goTo("experience")} />
         </NavigationBarGroup>
@@ -81,6 +86,4 @@ export default function NavigationBar(props: NavigationBarProps) {
   )
 }
 
-function goTo(section: string) {
-  window.location.replace(`/#${section}`)
-}
+

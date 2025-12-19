@@ -50,7 +50,7 @@ export default function App() {
           <div className="grow max-w-5xl mx-auto">
             <Welcome isDarkModeActive={isDarkModeActive} translation={translation} />
             <div className="flex flex-col gap-32">
-              <Projects translation={translation} />
+              <Projects isDarkModeActive={isDarkModeActive} translation={translation} />
               <Experience translation={translation} />
             </div>
           </div>

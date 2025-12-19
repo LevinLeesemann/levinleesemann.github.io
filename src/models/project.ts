@@ -4,7 +4,10 @@ export type Project = {
   id: ProjectId
   languages: string[]
   technologies: string[]
-  thumbnailUrl: string
+  thumbnailUrl: {
+    dark: string
+    light: string
+  }
   downloadUrl?: string
   sourceCodeUrl: string
 }

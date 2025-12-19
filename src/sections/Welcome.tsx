@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import drummerDark from "../assets/drummer-dark.gif"
-import drummerLight from "../assets/drummer-light.gif"
-import SectionSubtitle from "../components/SectionSubtitle"
-import SectionTitle from "../components/SectionTitle"
+import drummerDark from "../assets/drummer/dark.gif"
+import drummerLight from "../assets/drummer/light.gif"
+import Subtitle from "../components/Subtitle"
+import Title from "../components/Title"
 import type { Translation } from "../models/translation"
 
 type WelcomeProps = {
@@ -44,13 +44,13 @@ export default function Welcome(props: WelcomeProps) {
   return (
     <div className="grid grid-cols-1 grid-rows-1">
       <section id="welcome" style={{ minHeight: height }} className="col-start-1 row-start-1 z-10 flex flex-col gap-2 justify-center">
-        <SectionTitle className="text-shadow">
+        <Title className="text-shadow">
           {props.translation.welcomeSection.title.top}<br />
           {props.translation.welcomeSection.title.bottom}
-        </SectionTitle>
-        <SectionSubtitle className="text-shadow">
+        </Title>
+        <Subtitle className="text-shadow">
           {props.translation.welcomeSection.subtitle}
-        </SectionSubtitle>
+        </Subtitle>
       </section>
       <div className={`col-start-1 row-start-1 flex items-end justify-end w-full`} style={{ opacity: ((100 - Math.min(100, scrollLocation / 3)) / 100).toString() }}>
         <img src={props.isDarkModeActive ? drummerDark : drummerLight} className={`blur-sm`} style={{ maxHeight: height }} />

@@ -16,14 +16,16 @@ const translations: Record<string, Translation> = {
         welcome: "Welcome",
         projects: "Projects",
         experience: "Experience",
-        lightDarkMode: "Light/Dark Mode",
-        contact: "Contact",
-        language: "Language",
       },
-      handleLabel: {
-        collapse: "Collapse Navigation",
-        expand: "Expand Navigation",
-      },
+    },
+    settingsBar: {
+      hideLabel: "Hide settings",
+      showLabel: "Show settings",
+      language: "Language",
+      lightDarkMode: "Light/dark mode",
+    },
+    contactButton: {
+      label: "Send me a message",
     },
     contactForm: {
       header: "Contact",
@@ -152,14 +154,16 @@ const translations: Record<string, Translation> = {
         welcome: "Willkommen",
         projects: "Projekte",
         experience: "Erfahrung",
-        lightDarkMode: "Hell/Dunkel Modus",
-        contact: "Kontakt",
-        language: "Sprache",
       },
-      handleLabel: {
-        collapse: "Navigation einklappen",
-        expand: "Navigation ausklappen",
-      },
+    },
+    settingsBar: {
+      hideLabel: "Einstellungen verstecken",
+      showLabel: "Einstellungen zeigen",
+      language: "Sprache",
+      lightDarkMode: "Hell-/Dunkelmodus",
+    },
+    contactButton: {
+      label: "Nachricht senden",
     },
     contactForm: {
       header: "Kontakt",

@@ -11,17 +11,19 @@ export type Translation = {
       welcome: string
       projects: string
       experience: string
-      lightDarkMode: string
-      contact: string
-      language: string
-    }
-    handleLabel: {
-      collapse: string
-      expand: string
     }
   }
+  settingsBar: {
+    hideLabel: string
+    showLabel: string
+    language: string
+    lightDarkMode: string
+  },
+  contactButton: {
+    label: string
+  },
   contactForm: {
-    header: string,
+    header: string
     email: ContactFormField
     message: ContactFormField
     buttonLabel: {

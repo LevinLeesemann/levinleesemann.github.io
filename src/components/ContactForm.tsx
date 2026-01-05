@@ -1,5 +1,6 @@
 import { useForm } from '@formspree/react'
 import type { Translation } from '../models/translation'
+import Button from './Button'
 
 type ContactFormProps = {
   close: () => void
@@ -50,12 +51,12 @@ export default function ContactForm(props: ContactFormProps) {
         </p>}
       <textarea placeholder={props.translation.contactForm.message.placeholder} className="placeholder-text-muted border border-border box-border rounded-lg size-full py-2 px-3 mb-2 resize-none" id="message" name="message" />
       <div className="flex flex-row justify-between self-stretch">
-        <button type="submit" className="py-2 px-4 hover:px-6 transition-[padding] duration-250 rounded-full bg-accent text-background hover:cursor-pointer active:bg-accent-muted" disabled={state.submitting}>
+        <Button disabled={state.submitting} type="submit">
           {props.translation.contactForm.buttonLabel.submit}
-        </button>
-        <button type="button" onClick={props.close} className="py-2 px-4 hover:px-6 transition-[padding] duration-250 rounded-full bg-text text-background hover:cursor-pointer active:bg-text-muted" disabled={state.submitting}>
+        </Button>
+        <Button disabled={state.submitting} onClick={props.close} type="button">
           {props.translation.contactForm.buttonLabel.cancel}
-        </button>
+        </Button>
       </div>
     </form >
   )

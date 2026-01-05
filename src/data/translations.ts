@@ -163,7 +163,7 @@ const translations: Record<string, Translation> = {
       lightDarkMode: "Hell-/Dunkelmodus",
     },
     contactButton: {
-      label: "Nachricht senden",
+      label: "Schick mir eine Nachricht",
     },
     contactForm: {
       header: "Kontakt",

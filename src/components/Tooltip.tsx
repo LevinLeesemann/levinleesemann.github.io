@@ -25,7 +25,7 @@ export default function Tooltip(props: TooltipProps) {
   return (
     <div className="relative group inline-block">
       {props.children}
-      <div className={`absolute hidden group-hover:block border border-border bg-background text-text text-xs py-1 px-2 rounded-full whitespace-nowrap ${spacingOverride}`}>
+      <div className={`absolute hidden group-hover:block group-focus-within:block border border-border bg-background text-text text-xs py-1 px-2 rounded-full whitespace-nowrap ${spacingOverride}`}>
         {props.text}
       </div>
     </div>

@@ -14,7 +14,7 @@ type ProjectsProps = {
 export default function Projects(props: ProjectsProps) {
   return (
     <section id="projects" className="flex flex-col gap-8">
-      <Title onClick={() => window.location.replace("/#projects")}>{props.translation.projectsSection.title}</Title>
+      <Title className="hover:cursor-pointer" onClick={() => window.location.replace("/#projects")}>{props.translation.projectsSection.title}</Title>
       <Subtitle>
         {props.translation.projectsSection.subtitle.head} <SubtitleLink label="GitHub" url={urls.github} /> {props.translation.projectsSection.subtitle.tail}
       </Subtitle>

@@ -19,14 +19,14 @@ export default function ContactForm(props: ContactFormProps) {
 
   if (state.succeeded) {
     return (
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 flex flex-col items-center bg-background p-4 gap-4 text-text text-sm sm:text-md md:text-lg w-xs border border-border rounded-lg">
+      <dialog className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 flex flex-col items-center bg-background p-4 gap-4 text-text text-sm sm:text-md md:text-lg w-xs border border-border rounded-lg">
         <p>
           {props.translation.contactForm.thankYou}
         </p>
         <button type="button" onClick={props.close} className="size-fit py-2 px-4 hover:px-6 transition-[padding] duration-250 rounded-full bg-accent text-background hover:cursor-pointer active:bg-accent-muted" disabled={state.submitting}>
           {props.translation.contactForm.buttonLabel.close}
         </button>
-      </div>
+      </dialog>
     )
   }
 

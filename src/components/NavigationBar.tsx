@@ -18,12 +18,12 @@ export default function NavigationBar(props: NavigationBarProps) {
   }
 
   return (
-    <div ref={handle} className="z-20 fixed inset-x-0 top-4 flex flex-col items-center gap transition-transform duration-250 pointer-events-none">
+    <nav ref={handle} className="z-20 fixed inset-x-0 top-4 flex flex-col items-center gap transition-transform duration-250 pointer-events-none">
       <BarGroup>
         <BarGroupButton icon={PiHandWaving} isActive={props.activeSection === "welcome"} label={props.translation.navigationBar.buttonLabel.welcome} onClick={() => { goTo("welcome") }} tooltipLocation="bottom" />
         <BarGroupButton icon={GoFileCode} isActive={props.activeSection === "projects"} label={props.translation.navigationBar.buttonLabel.projects} onClick={() => goTo("projects")} tooltipLocation="bottom" />
         <BarGroupButton icon={GoBriefcase} isActive={props.activeSection === "experience"} label={props.translation.navigationBar.buttonLabel.experience} onClick={() => goTo("experience")} tooltipLocation="bottom" />
       </BarGroup>
-    </div>
+    </nav>
   )
 }

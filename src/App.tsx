@@ -52,7 +52,7 @@ export default function App() {
   }, [isDarkModeActive])
 
   return (
-    <div>
+    <main>
       <NavigationBar activeSection={activeSection} translation={translation} />
       <div className={isContactModalActive ? "" : "hidden"}>
         <div onClick={() => setIsContactModalActive(false)} className="fixed size-full bg-background z-30 opacity-50" />
@@ -70,6 +70,6 @@ export default function App() {
         <Footer translation={translation} />
       </div>
       <ContactButton showContactModal={() => setIsContactModalActive(true)} translation={translation} />
-    </div>
+    </main>
   )
 }

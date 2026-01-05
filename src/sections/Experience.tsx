@@ -18,7 +18,7 @@ export default function Experience(props: ExperienceProps) {
 
   return (
     <section id="experience" className="flex flex-col gap-8">
-      <Title onClick={() => window.location.replace("/#experience")}>{props.translation.experienceSection.title}</Title>
+      <Title className="hover:cursor-pointer" onClick={() => window.location.replace("/#experience")}>{props.translation.experienceSection.title}</Title>
       <Subtitle>
         {props.translation.experienceSection.subtitle.head} <SubtitleLink label="LinkedIn" url={urls.linkedIn} /> {props.translation.experienceSection.subtitle.tail}
       </Subtitle>

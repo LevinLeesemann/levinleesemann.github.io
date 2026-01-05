@@ -89,6 +89,7 @@ const translations: Record<string, Translation> = {
     experience: {
       specializationLabel: {
         backend: "Backend",
+        embedded: "Embedded",
         frontend: "Frontend",
         fullstack: "Fullstack",
         systems: "Systems",
@@ -238,6 +239,7 @@ const translations: Record<string, Translation> = {
     experience: {
       specializationLabel: {
         backend: "Backend",
+        embedded: "Embedded",
         frontend: "Frontend",
         fullstack: "Fullstack",
         systems: "Systeme",

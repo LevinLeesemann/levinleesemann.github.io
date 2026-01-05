@@ -49,6 +49,7 @@ export const workExperiences: WorkExperience[] = [
   },
   {
     id: "intern",
+    specializationIds: ["embedded"],
     typeIds: ["internship"],
   },
 ]

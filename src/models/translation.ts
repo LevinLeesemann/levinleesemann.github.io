@@ -1,10 +1,13 @@
-import type { ProjectId } from "./project"
-import type { WorkExperienceId } from "./work-experience"
+import type { ProjectId, ProjectResourceId } from "./project"
+import type { WorkExperienceId, WorkExperienceSpecializationId, WorkExperienceTypeId } from "./work-experience"
 
 type ContactFormField = { missingMessage: string, label: string, placeholder: string }
 type Subtitle = { head: string, tail: string }
-type TranslationExperiences = Record<WorkExperienceId, { title: string; employer: string }>
+type TranslationWorkExperiences = Record<WorkExperienceId, { title: string; employer: string }>
+type TranslationWorkExperienceSpecializations = Record<WorkExperienceSpecializationId, string>
+type TranslationWorkExperienceTypes = Record<WorkExperienceTypeId, string>
 type TranslationProjects = Record<ProjectId, { title: string; description: string }>
+type TranslationProjectResources = Record<ProjectResourceId, string>
 
 export type Translation = {
   navigationBar: {
@@ -42,12 +45,7 @@ export type Translation = {
     subtitle: string
   }
   project: {
-    resourceLabel: {
-      article: string
-      download: string
-      researchPaper: string
-      sourceCode: string
-    }
+    resourceLabel: TranslationProjectResources
   }
   projectsSection: {
     title: string
@@ -55,20 +53,10 @@ export type Translation = {
   }
   projects: TranslationProjects
   experience: {
-    specializationLabel: {
-      backend: string
-      frontend: string
-      fullstack: string
-      systems: string
-    }
-    typeLabel: {
-      fullTime: string
-      partTime: string
-      contract: string
-      internship: string
-    }
+    specializationLabel: TranslationWorkExperienceSpecializations
+    typeLabel: TranslationWorkExperienceTypes
   }
-  experiences: TranslationExperiences
+  experiences: TranslationWorkExperiences
   experienceSection: {
     and: string
     timelineEnd: string

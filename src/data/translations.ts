@@ -16,6 +16,7 @@ const translations: Record<string, Translation> = {
         welcome: "Welcome",
         projects: "Projects",
         experience: "Experience",
+        posts: "Blog posts",
       },
     },
     settingsBar: {
@@ -153,6 +154,10 @@ const translations: Record<string, Translation> = {
         tail: "profile",
       },
     },
+    postsSection: {
+      title: "Lessons learned",
+      subtitle: "From technical challenges to key design decisions",
+    },
     footerSection: {
       builtWithText: {
         head: "Built from scratch with",
@@ -166,6 +171,7 @@ const translations: Record<string, Translation> = {
         welcome: "Willkommen",
         projects: "Projekte",
         experience: "Erfahrung",
+        posts: "Blogbeiträge",
       },
     },
     settingsBar: {
@@ -302,6 +308,10 @@ const translations: Record<string, Translation> = {
         head: "Für mehr Details zu meinen Jobs besuche mein",
         tail: "Profil",
       },
+    },
+    postsSection: {
+      title: "Meine Erkenntnisse",
+      subtitle: "Von technischen Herausforderungen bis zu zentralen Designentscheidungen",
     },
     footerSection: {
       builtWithText: {

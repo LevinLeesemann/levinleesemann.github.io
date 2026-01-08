@@ -15,6 +15,7 @@ export type Translation = {
       welcome: string
       projects: string
       experience: string
+      posts: string
     }
   }
   settingsBar: {
@@ -55,6 +56,10 @@ export type Translation = {
   experience: {
     specializationLabel: TranslationWorkExperienceSpecializations
     typeLabel: TranslationWorkExperienceTypes
+  }
+  postsSection: {
+    title: string
+    subtitle: string
   }
   experiences: TranslationWorkExperiences
   experienceSection: {

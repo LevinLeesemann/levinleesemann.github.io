@@ -8,6 +8,7 @@ import Experience from './sections/Experience'
 import Footer from './sections/Footer'
 import Projects from './sections/Projects'
 import Welcome from './sections/Welcome'
+import Posts from './sections/Posts'
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("welcome")
@@ -65,6 +66,7 @@ export default function App() {
           <div className="flex flex-col gap-32">
             <Projects isDarkModeActive={isDarkModeActive} translation={translation} />
             <Experience translation={translation} />
+            <Posts translation={translation} />
           </div>
         </div>
         <Footer translation={translation} />

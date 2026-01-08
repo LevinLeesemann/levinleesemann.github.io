@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { GoBriefcase, GoFileCode } from "react-icons/go"
+import { GoBook, GoBriefcase, GoFileCode } from "react-icons/go"
 import { PiHandWaving } from "react-icons/pi"
 import type { Translation } from "../models/translation"
 import BarGroup from "./Bar/BarGroup"
@@ -23,6 +23,7 @@ export default function NavigationBar(props: NavigationBarProps) {
         <BarGroupButton icon={PiHandWaving} isActive={props.activeSection === "welcome"} label={props.translation.navigationBar.buttonLabel.welcome} onClick={() => { goTo("welcome") }} tooltipLocation="bottom" />
         <BarGroupButton icon={GoFileCode} isActive={props.activeSection === "projects"} label={props.translation.navigationBar.buttonLabel.projects} onClick={() => goTo("projects")} tooltipLocation="bottom" />
         <BarGroupButton icon={GoBriefcase} isActive={props.activeSection === "experience"} label={props.translation.navigationBar.buttonLabel.experience} onClick={() => goTo("experience")} tooltipLocation="bottom" />
+        <BarGroupButton icon={GoBook} isActive={props.activeSection === "posts"} label={props.translation.navigationBar.buttonLabel.posts} onClick={() => goTo("posts")} tooltipLocation="bottom" />
       </BarGroup>
     </nav>
   )

@@ -5,6 +5,7 @@ import Experience from "../sections/Experience"
 import Footer from "../sections/Footer"
 import Projects from "../sections/Projects"
 import Welcome from "../sections/Welcome"
+import Posts from "../sections/Posts"
 
 type HomeProps = {
   isDarkModeActive: boolean
@@ -53,7 +54,7 @@ export default function Home(props: HomeProps) {
         <div className="flex flex-col gap-32">
           <Projects isDarkModeActive={props.isDarkModeActive} language={props.language} />
           <Experience language={props.language} />
-          {/* <Posts language={props.language} /> */}
+          <Posts language={props.language} />
         </div>
       </div>
       <Footer language={props.language} />

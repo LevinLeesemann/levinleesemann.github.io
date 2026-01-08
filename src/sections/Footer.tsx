@@ -1,10 +1,11 @@
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io"
 import FooterButton from "../components/FooterButton"
+import { translations } from "../data/translations"
 import { urls } from "../data/urls"
-import type { Translation } from "../models/translation"
+import type { Language } from "../models/language"
 
 type FooterProps = {
-  translation: Translation
+  language: Language
 }
 
 export default function Footer(props: FooterProps) {
@@ -20,8 +21,8 @@ export default function Footer(props: FooterProps) {
           <FooterButton icon={IoLogoLinkedin} url={urls.linkedIn} />
         </div>
         <div className="flex flex-col gap-2 text-text-muted text-xs sm:text-sm md:text-md text-center">
-          <p>{props.translation.footerSection.builtWithText.head} React + Tailwind + Vite{props.translation.footerSection.builtWithText.tail ? ` ${props.translation.footerSection.builtWithText.tail}` : ""}</p>
-          <a className="self-center" href="https://www.flaticon.com/free-animated-icons/drummer" target="_blank" title="drummer animated icons">{props.translation.footerSection.drummerIconText} Freepik - Flaticon</a>
+          <p>{translations[props.language].footer.builtWith.head} React + Tailwind + Vite{translations[props.language].footer.builtWith.tail ? ` ${translations[props.language].footer.builtWith.tail!}` : ""}</p>
+          <a className="self-center" href="https://www.flaticon.com/free-animated-icons/drummer" target="_blank" title="drummer animated icons">{translations[props.language].footer.drummerIconText} Freepik - Flaticon</a>
         </div>
       </div>
     </footer>

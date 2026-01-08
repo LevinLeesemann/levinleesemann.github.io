@@ -1,13 +1,14 @@
 import { useRef } from "react"
 import { GoBook, GoBriefcase, GoFileCode } from "react-icons/go"
 import { PiHandWaving } from "react-icons/pi"
-import type { Translation } from "../models/translation"
+import { translations } from "../data/translations"
+import type { Language } from "../models/language"
 import BarGroup from "./Bar/BarGroup"
 import BarGroupButton from "./Bar/BarGroupButton"
 
 type NavigationBarProps = {
   activeSection: string
-  translation: Translation
+  language: Language
 }
 
 export default function NavigationBar(props: NavigationBarProps) {
@@ -20,10 +21,10 @@ export default function NavigationBar(props: NavigationBarProps) {
   return (
     <nav ref={handle} className="z-20 fixed inset-x-0 top-4 flex flex-col items-center gap transition-transform duration-250 pointer-events-none">
       <BarGroup>
-        <BarGroupButton icon={PiHandWaving} isActive={props.activeSection === "welcome"} label={props.translation.navigationBar.buttonLabel.welcome} onClick={() => { goTo("welcome") }} tooltipLocation="bottom" />
-        <BarGroupButton icon={GoFileCode} isActive={props.activeSection === "projects"} label={props.translation.navigationBar.buttonLabel.projects} onClick={() => goTo("projects")} tooltipLocation="bottom" />
-        <BarGroupButton icon={GoBriefcase} isActive={props.activeSection === "experience"} label={props.translation.navigationBar.buttonLabel.experience} onClick={() => goTo("experience")} tooltipLocation="bottom" />
-        <BarGroupButton icon={GoBook} isActive={props.activeSection === "posts"} label={props.translation.navigationBar.buttonLabel.posts} onClick={() => goTo("posts")} tooltipLocation="bottom" />
+        <BarGroupButton icon={PiHandWaving} isActive={props.activeSection === "welcome"} label={translations[props.language].bar.navigation.welcome} onClick={() => { goTo("welcome") }} tooltipLocation="bottom" />
+        <BarGroupButton icon={GoFileCode} isActive={props.activeSection === "projects"} label={translations[props.language].bar.navigation.projects} onClick={() => goTo("projects")} tooltipLocation="bottom" />
+        <BarGroupButton icon={GoBriefcase} isActive={props.activeSection === "experience"} label={translations[props.language].bar.navigation.experience} onClick={() => goTo("experience")} tooltipLocation="bottom" />
+        <BarGroupButton icon={GoBook} isActive={props.activeSection === "posts"} label={translations[props.language].bar.navigation.posts} onClick={() => goTo("posts")} tooltipLocation="bottom" />
       </BarGroup>
     </nav>
   )

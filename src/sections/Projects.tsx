@@ -3,23 +3,24 @@ import Subtitle from "../components/Subtitle"
 import SubtitleLink from "../components/SubtitleLink"
 import Title from "../components/Title"
 import { projects } from "../data/projects"
+import { translations } from "../data/translations"
 import { urls } from "../data/urls"
-import type { Translation } from "../models/translation"
+import type { Language } from "../models/language"
 
 type ProjectsProps = {
   isDarkModeActive: boolean
-  translation: Translation
+  language: Language
 }
 
 export default function Projects(props: ProjectsProps) {
   return (
     <section id="projects" className="flex flex-col gap-8">
-      <Title className="hover:cursor-pointer" onClick={() => window.location.replace("/#projects")}>{props.translation.projectsSection.title}</Title>
+      <Title className="hover:cursor-pointer" onClick={() => window.location.replace("/#projects")}>{translations[props.language].section.projects.title}</Title>
       <Subtitle>
-        {props.translation.projectsSection.subtitle.head} <SubtitleLink label="GitHub" url={urls.github} /> {props.translation.projectsSection.subtitle.tail}
+        {translations[props.language].section.projects.subtitle.head} <SubtitleLink label="GitHub" url={urls.github} /> {translations[props.language].section.projects.subtitle.tail}
       </Subtitle>
       <div className="grid gap-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-        {projects.map(project => <ProjectCard key={project.id} isDarkModeActive={props.isDarkModeActive} project={project} translation={props.translation} />)}
+        {projects.map(project => <ProjectCard key={project.id} isDarkModeActive={props.isDarkModeActive} project={project} language={props.language} />)}
       </div>
     </section>
   )

@@ -1,10 +1,11 @@
 import { GoMail } from "react-icons/go"
-import type { Translation } from "../models/translation"
+import { translations } from "../data/translations"
+import type { Language } from "../models/language"
 import Button from "./Button"
 
 type ContactButtonProps = {
+  language: Language
   showContactModal: () => void
-  translation: Translation
 }
 
 export default function ContactButton(props: ContactButtonProps) {
@@ -15,7 +16,7 @@ export default function ContactButton(props: ContactButtonProps) {
           <div className="border rounded-full bg-background border-border pointer-events-auto">
             <Button onClick={props.showContactModal}>
               <p className="inline-flex items-center gap-2 group-hover:gap-3 transition-[gap] duration-250">
-                {props.translation.contactButton.label} <GoMail />
+                {translations[props.language].contact.button} <GoMail />
               </p>
             </Button>
           </div>

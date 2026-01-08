@@ -6,11 +6,19 @@ import portfolioWebsiteDark from "../assets/projects/portfolio-website/dark.png"
 import portfolioWebsiteLight from "../assets/projects/portfolio-website/light.png"
 import tempusThumbnailDark from "../assets/projects/tempus/dark.png"
 import tempusThumbnailLight from "../assets/projects/tempus/light.png"
-import type { Project } from "../models/project"
+import type { Project, ProjectResourceLabel } from "../models/project"
 
 export const projects: Project[] = [
   {
     id: "tempus",
+    title: {
+      english: "Tempus",
+      german: "Tempus",
+    },
+    description: {
+      english: "Metronome app that delivers a flexible, real-time adjustable beat and subdivision experience",
+      german: "Metronom-App, die ein flexibles, in Echtzeit anpassbares Schlag- und Unterteilungs-Erlebnis bietet",
+    },
     languages: ["Swift", "C++", "Dart"],
     resources: [
       {
@@ -18,7 +26,7 @@ export const projects: Project[] = [
         url: "https://apps.apple.com/us/app/tempus-metronome/id6738511466?platform=iphone",
       },
       {
-        labelId: "sourceCode",
+        labelId: "source-code",
         url: "https://github.com/LevinLeesemann/Tempus",
       },
     ],
@@ -29,11 +37,19 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "drumlineTranscriber",
+    id: "drumline-transcriber",
+    title: {
+      english: "Drumline Transcriber",
+      german: "Drumline Transcriber",
+    },
+    description: {
+      english: "Machine learning toolchain that converts drumline audio into symbolic transcriptions",
+      german: "Machine-Learning-Toolchain, die Drumline-Audio in symbolische Transkriptionen umwandelt",
+    },
     languages: ["Python"],
     resources: [
       {
-        labelId: "sourceCode",
+        labelId: "source-code",
         url: "https://github.com/LevinLeesemann/drumline-transcriber",
       },
       {
@@ -41,7 +57,7 @@ export const projects: Project[] = [
         url: "https://cs.uiowa.edu/news/2022/06/automated-drumline-recognition",
       },
       {
-        labelId: "researchPaper",
+        labelId: "research-paper",
         url: "https://cs.uiowa.edu/sites/cs.uiowa.edu/files/2022-06/Research%20Paper.pdf",
       },
     ],
@@ -52,11 +68,19 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "jobPostingNotifier",
+    id: "job-posting-notifier",
+    title: {
+      english: "Job Posting Notifier",
+      german: "Job Posting Notifier",
+    },
+    description: {
+      english: "Monitors job listings and publishes real-time notifications to subscribing devices",
+      german: "Überwacht Stellenanzeigen und sendet Echtzeit-Benachrichtigungen an abonnierte Geräte",
+    },
     languages: ["Java"],
     resources: [
       {
-        labelId: "sourceCode",
+        labelId: "source-code",
         url: "https://github.com/LevinLeesemann/job-posting-notifier",
       },
     ],
@@ -67,11 +91,19 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "portfolioWebsite",
+    id: "portfolio-website",
+    title: {
+      english: "Portfolio Website",
+      german: "Portfolio-Website",
+    },
+    description: {
+      english: "This very website, highlighting my favorite projects and experience",
+      german: "Die Website, auf der du dich gerade befindest – sie präsentiert meine Lieblingsprojekte und Erfahrungen",
+    },
     languages: ["TypeScript"],
     resources: [
       {
-        labelId: "sourceCode",
+        labelId: "source-code",
         url: "https://github.com/LevinLeesemann/portfolio",
       },
     ],
@@ -82,3 +114,22 @@ export const projects: Project[] = [
     },
   },
 ]
+
+export const projectResourceLabels: ProjectResourceLabel = {
+  article: {
+    english: "Article",
+    german: "Artikel",
+  },
+  download: {
+    english: "Download",
+    german: "Herunterladen",
+  },
+  "research-paper": {
+    english: "Research paper",
+    german: "Wissenschaftliche Arbeit",
+  },
+  "source-code": {
+    english: "Source code",
+    german: "Quellcode",
+  },
+}

@@ -1,4 +1,6 @@
-import type { Translation } from "../../models/translation"
+import { translations } from "../../data/translations"
+import { workExperienceSpecializations, workExperienceTypes } from "../../data/work-experiences"
+import type { Language } from "../../models/language"
 import type { WorkExperience } from "../../models/work-experience"
 import Chip from "../Chip"
 import TimelineText from "./TimelineText"
@@ -6,7 +8,7 @@ import TimelineText from "./TimelineText"
 type TimelineEntryProps = {
   isFirst: boolean
   isLast: boolean
-  translation: Translation
+  language: Language
   workExperiences: WorkExperience[]
 }
 
@@ -23,18 +25,18 @@ export default function TimelineEntry(props: TimelineEntryProps) {
       <div className="flex flex-col md:flex-row items-start py-4 gap-2 md:gap-0">
         {props.workExperiences.map((workExperience, index) =>
           <div key={workExperience.id} className="flex flex-row items-center">
-            {index !== 0 && <TimelineText className="hidden md:block px-4" text={props.translation.experienceSection.and} />}
+            {index !== 0 && <TimelineText className="hidden md:block px-4" text={translations[props.language].section.experience.and} />}
             <div>
               <div className="flex flex-row gap-2 items-center">
                 <p className="text-text">
-                  {props.translation.experiences[workExperience.id].title}
+                  {workExperience.title[props.language]}
                 </p>
                 <div className="flex flex-row gap-2 text-xs">
-                  {workExperience.specializationIds?.map(specialization => <Chip key={specialization} className="text-accent bg-accent-muted" label={props.translation.experience.specializationLabel[specialization]} />)}
+                  {workExperience.specializationIds?.map(id => <Chip key={id} className="text-accent bg-accent-muted" label={workExperienceSpecializations[id][props.language]} />)}
                 </div>
               </div>
               <p className="text-text-muted text-sm">
-                {props.translation.experiences[workExperience.id].employer} ({workExperience.typeIds.map(id => props.translation.experience.typeLabel[id]).join(", ")})
+                {workExperience.employer[props.language]} ({workExperience.typeIds.map(id => workExperienceTypes[id][props.language]).join(", ")})
               </p>
             </div>
           </div>)

@@ -1,12 +1,18 @@
-export type WorkExperienceId = "seniorSoftwareEngineer" | "softwareEngineerAudio" | "softwareEngineerII" | "softwareEngineerI" | "graduateTeachingAssistant" | "softwareEngineeringInternBackend" | "softwareEngineeringInternFrontend" | "softwareDevelopmentIntern" | "developerAudioEngineer" | "intern"
-
-export type WorkExperienceSpecializationId = "backend" | "embedded" | "frontend" | "fullstack" | "systems"
-
-export type WorkExperienceTypeId = "fullTime" | "partTime" | "contract" | "internship"
+import type { Translated } from "./translation"
 
 export type WorkExperience = {
-  id: WorkExperienceId
+  id: string
+  title: Translated<string>
+  employer: Translated<string>
   specializationIds?: WorkExperienceSpecializationId[]
   typeIds: WorkExperienceTypeId[]
   isActive?: boolean
 }
+
+export type WorkExperienceSpecializations = Record<WorkExperienceSpecializationId, Translated<string>>
+
+export type WorkExperienceTypes = Record<WorkExperienceTypeId, Translated<string>>
+
+type WorkExperienceSpecializationId = "backend" | "embedded" | "frontend" | "fullstack" | "systems"
+
+type WorkExperienceTypeId = "full-time" | "part-time" | "contract" | "internship"

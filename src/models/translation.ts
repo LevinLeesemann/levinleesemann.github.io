@@ -1,76 +1,70 @@
-import type { ProjectId, ProjectResourceId } from "./project"
-import type { WorkExperienceId, WorkExperienceSpecializationId, WorkExperienceTypeId } from "./work-experience"
+import type { Language } from "./language"
 
-type ContactFormField = { missingMessage: string, label: string, placeholder: string }
-type Subtitle = { head: string, tail: string }
-type TranslationWorkExperiences = Record<WorkExperienceId, { title: string; employer: string }>
-type TranslationWorkExperienceSpecializations = Record<WorkExperienceSpecializationId, string>
-type TranslationWorkExperienceTypes = Record<WorkExperienceTypeId, string>
-type TranslationProjects = Record<ProjectId, { title: string; description: string }>
-type TranslationProjectResources = Record<ProjectResourceId, string>
+type ContactFormField = { missing: string, label: string, placeholder: string }
+type Split = { head: string, tail: string }
+
+export type Translated<T> = Record<Language, T>
 
 export type Translation = {
-  navigationBar: {
-    buttonLabel: {
+  bar: {
+    navigation: {
       welcome: string
       projects: string
       experience: string
       posts: string
     }
+    settings: {
+      hide: string
+      show: string
+      language: string
+      lightDarkMode: string
+    }
   }
-  settingsBar: {
-    hideLabel: string
-    showLabel: string
-    language: string
-    lightDarkMode: string
-  },
-  contactButton: {
-    label: string
-  },
-  contactForm: {
-    header: string
-    email: ContactFormField
-    message: ContactFormField
-    buttonLabel: {
-      submit: string
-      cancel: string
+  contact: {
+    button: string
+    form: {
+      email: ContactFormField
+      header: string
+      message: ContactFormField
+      button: {
+        cancel: string
+        submit: string
+      }
+    }
+    completed: {
       close: string
+      message: string
     }
-    thankYou: string
   }
-  welcomeSection: {
-    title: {
-      top: string
-      bottom: string
+  section: {
+    experience: {
+      and: string
+      timelineEnd: string
+      timelineStart: string
+      title: string
+      subtitle: Split
     }
-    subtitle: string
+    posts: {
+      title: string
+      subtitle: string
+    }
+    projects: {
+      title: string
+      subtitle: Split
+    }
+    welcome: {
+      title: Split 
+      subtitle: string
+    }
   }
-  project: {
-    resourceLabel: TranslationProjectResources
+  post: {
+    notFound: {
+      title: string
+      subtitle: Split
+    }
   }
-  projectsSection: {
-    title: string
-    subtitle: Subtitle
-  }
-  projects: TranslationProjects
-  experience: {
-    specializationLabel: TranslationWorkExperienceSpecializations
-    typeLabel: TranslationWorkExperienceTypes
-  }
-  postsSection: {
-    title: string
-    subtitle: string
-  }
-  experiences: TranslationWorkExperiences
-  experienceSection: {
-    and: string
-    timelineEnd: string
-    timelineStart: string
-    title: string
-    subtitle: Subtitle
-  }
-  footerSection: {
-    builtWithText: {
+  footer: {
+    builtWith: {
       head: string
       tail?: string
     }

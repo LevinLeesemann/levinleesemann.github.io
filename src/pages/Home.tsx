@@ -47,15 +47,13 @@ export default function Home(props: HomeProps) {
   }, [activeSection])
 
   return (
-    <div className="flex flex-col px-[8%]">
+    <div>
       <NavigationBar activeSection={activeSection} language={props.language} />
-      <div className="grow max-w-5xl mx-auto">
-        <Welcome isDarkModeActive={props.isDarkModeActive} language={props.language} />
-        <div className="flex flex-col gap-32">
-          <Projects isDarkModeActive={props.isDarkModeActive} language={props.language} />
-          <Experience language={props.language} />
-          <Posts isDarkModeActive={props.isDarkModeActive} language={props.language} locale={props.locale} />
-        </div>
+      <Welcome isDarkModeActive={props.isDarkModeActive} language={props.language} />
+      <div className="flex flex-col gap-32">
+        <Projects isDarkModeActive={props.isDarkModeActive} language={props.language} />
+        <Experience language={props.language} />
+        <Posts isDarkModeActive={props.isDarkModeActive} language={props.language} locale={props.locale} />
       </div>
     </div>
   )

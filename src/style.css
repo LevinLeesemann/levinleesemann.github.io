@@ -35,5 +35,5 @@
 
 .text-shadow {
   filter:
-    drop-shadow(0 0 3px var(--background)) drop-shadow(0 0 3px var(--background)) drop-shadow(0 0 3px var(--background)) drop-shadow(0 0 3px var(--background)) drop-shadow(0 0 3px var(--background)) ;
+    drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background));
 }

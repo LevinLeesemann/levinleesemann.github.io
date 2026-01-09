@@ -45,12 +45,12 @@ export default function Welcome(props: WelcomeProps) {
 
   return (
     <div className="grid grid-cols-1 grid-rows-1">
-      <section id="welcome" style={{ minHeight: height }} className="col-start-1 row-start-1 z-10 flex flex-col gap-2 justify-center">
-        <Title className="text-shadow">
+      <section id="welcome" style={{ minHeight: height }} className="text-shadow col-start-1 row-start-1 z-10 flex flex-col gap-2 justify-center">
+        <Title>
           {translations[props.language].section.welcome.title.head}<br />
           {translations[props.language].section.welcome.title.tail}
         </Title>
-        <Subtitle className="text-shadow">
+        <Subtitle>
           {translations[props.language].section.welcome.subtitle}
         </Subtitle>
       </section>

@@ -26,11 +26,15 @@ export default function App() {
       </div>
       <SettingsBar isDarkModeActive={isDarkModeActive} language={language} region={locale} setIsDarkModeActive={setIsDarkModeActive} setRegion={setLocale} />
       <ContactButton language={language} showContactModal={() => setIsContactModalActive(true)} />
-      <Routes>
-        <Route path="/" element={<Home isDarkModeActive={isDarkModeActive} language={language} locale={locale} />} />
-        <Route path="/:slug" element={<Post language={language} />} />
-      </Routes>
-      <Footer language={language} />
+      <div className="px-[8%]">
+        <div className="grow max-w-5xl mx-auto">
+          <Routes>
+            <Route path="/" element={<Home isDarkModeActive={isDarkModeActive} language={language} locale={locale} />} />
+            <Route path="/:slug" element={<Post language={language} />} />
+          </Routes>
+          <Footer language={language} />
+        </div>
+      </div>
     </main>
   )
 }

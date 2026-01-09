@@ -6,6 +6,7 @@ import SettingsBar from './components/SettingsBar'
 import { toLanguage } from './models/language'
 import Home from './pages/Home'
 import Post from './pages/Post'
+import Footer from './sections/Footer'
 
 export default function App() {
   const [isDarkModeActive, setIsDarkModeActive] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches)
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/" element={<Home isDarkModeActive={isDarkModeActive} language={language} locale={locale} />} />
         <Route path="/:slug" element={<Post language={language} />} />
       </Routes>
+      <Footer language={language} />
     </main>
   )
 }

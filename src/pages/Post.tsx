@@ -51,6 +51,8 @@ export default function Post(props: PostProps) {
   }
 
   return (
-    <div></div>
+    <div style={{ minHeight: height }}>
+
+    </div>
   )
 }

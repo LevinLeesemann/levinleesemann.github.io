@@ -1,3 +1,4 @@
+import type { ThumbnailUrl } from "./thumbnail-url"
 import type { Translated } from "./translation"
 
 interface PostSection {
@@ -8,6 +9,8 @@ interface PostSection {
 export interface Post {
   id: string
   title: Translated<string>
-  subtitle: Translated<string>
+  datePosted: Date
+  description: Translated<string>
   sections: Translated<PostSection>[]
+  thumbnailUrl: ThumbnailUrl
 }

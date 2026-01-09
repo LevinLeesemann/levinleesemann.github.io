@@ -3,13 +3,14 @@ import NavigationBar from "../components/NavigationBar"
 import type { Language } from "../models/language"
 import Experience from "../sections/Experience"
 import Footer from "../sections/Footer"
+import Posts from "../sections/Posts"
 import Projects from "../sections/Projects"
 import Welcome from "../sections/Welcome"
-import Posts from "../sections/Posts"
 
 type HomeProps = {
   isDarkModeActive: boolean
   language: Language
+  locale: string
 }
 
 export default function Home(props: HomeProps) {
@@ -48,13 +49,13 @@ export default function Home(props: HomeProps) {
 
   return (
     <div className="flex flex-col px-[8%]">
-      <NavigationBar activeSection={activeSection} language={props.language}/>
+      <NavigationBar activeSection={activeSection} language={props.language} />
       <div className="grow max-w-5xl mx-auto">
         <Welcome isDarkModeActive={props.isDarkModeActive} language={props.language} />
         <div className="flex flex-col gap-32">
           <Projects isDarkModeActive={props.isDarkModeActive} language={props.language} />
           <Experience language={props.language} />
-          <Posts language={props.language} />
+          <Posts isDarkModeActive={props.isDarkModeActive} language={props.language} locale={props.locale} />
         </div>
       </div>
       <Footer language={props.language} />

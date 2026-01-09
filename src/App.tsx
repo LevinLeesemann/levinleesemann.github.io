@@ -10,8 +10,8 @@ import Post from './pages/Post'
 export default function App() {
   const [isDarkModeActive, setIsDarkModeActive] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches)
   const [isContactModalActive, setIsContactModalActive] = useState(false)
-  const [region, setRegion] = useState(navigator.language.split("-").at(-1)?.toUpperCase() ?? "US")
-  const language = toLanguage(region)
+  const [locale, setLocale] = useState(navigator.language)
+  const language = toLanguage(locale.split("-").at(-1)?.toUpperCase() ?? "US")
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDarkModeActive)
@@ -23,10 +23,10 @@ export default function App() {
         <div onClick={() => setIsContactModalActive(false)} className="fixed size-full bg-background z-30 opacity-50" />
         <ContactForm close={() => setIsContactModalActive(false)} isHidden={isContactModalActive} language={language} />
       </div>
-      <SettingsBar isDarkModeActive={isDarkModeActive} language={language} region={region} setIsDarkModeActive={setIsDarkModeActive} setRegion={setRegion} />
+      <SettingsBar isDarkModeActive={isDarkModeActive} language={language} region={locale} setIsDarkModeActive={setIsDarkModeActive} setRegion={setLocale} />
       <ContactButton language={language} showContactModal={() => setIsContactModalActive(true)} />
       <Routes>
-        <Route path="/" element={<Home isDarkModeActive={isDarkModeActive} language={language} />} />
+        <Route path="/" element={<Home isDarkModeActive={isDarkModeActive} language={language} locale={locale} />} />
         <Route path="/:slug" element={<Post language={language} />} />
       </Routes>
     </main>

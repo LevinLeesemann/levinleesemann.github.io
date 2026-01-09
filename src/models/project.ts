@@ -1,3 +1,4 @@
+import type { ThumbnailUrl } from "./thumbnail-url"
 import type { Translated } from "./translation"
 
 export type ProjectId = "tempus" | "drumline-transcriber" | "job-posting-notifier" | "portfolio-website"
@@ -9,10 +10,7 @@ export type Project = {
   languages: string[]
   resources: ProjectResource[]
   technologies: string[]
-  thumbnailUrl: {
-    dark: string
-    light: string
-  }
+  thumbnailUrl: ThumbnailUrl
 }
 
 export type ProjectResourceLabel = Record<ProjectResourceLabelId, Translated<string>>

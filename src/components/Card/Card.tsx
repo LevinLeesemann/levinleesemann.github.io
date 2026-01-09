@@ -1,43 +1,43 @@
-import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import type { ThumbnailUrl } from "../../models/thumbnail-url"
 import Chip from "../Chip"
-import ProjectCardLink from "./CardLink"
+import CardExternalLink from "./CardLink"
+import CardThumbnail from "./CardThumbnail"
 
-type ExternalLink = {
+type Link = {
+  isExternal: boolean
   label: string
   url: string
 }
 
-type ThumbnailUrl = {
-  dark: string
-  light: string
-}
-
-type ProjectCardProps = {
+type CardProps = {
   accentChipLabels?: string[]
   chipLabels?: string[]
   description: string
-  externalLinks: ExternalLink[]
   isDarkModeActive: boolean
+  links: Link[]
   thumbnail: ThumbnailUrl
   title: string
 }
 
-export default function ProjectCard(props: ProjectCardProps) {
-  const [isThumbnailLoaded, setIsThumbnailLoaded] = useState(false)
+export default function Card(props: CardProps) {
+  const navigate = useNavigate()
+
+  const thumbnail = <CardThumbnail isDarkModeActive={props.isDarkModeActive} thumbnail={props.thumbnail}></CardThumbnail>
 
   return (
     <article className="flex flex-col gap-6">
       <h1 className="text-text md:text-lg">
         {props.title}
       </h1>
-      <a href={props.externalLinks.at(0)?.url} target="_blank">
-        {!isThumbnailLoaded &&
-          <div className="flex items-center justify-center w-full aspect-2/1">
-            <div className="size-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
-          </div>
-        }
-        <img src={props.isDarkModeActive ? props.thumbnail.dark : props.thumbnail.light} className={`${isThumbnailLoaded ? "" : "hidden"} border-0 rounded-lg w-max aspect-2/1 object-cover hover:scale-105 transition-[scale] duration-250`} onLoad={() => setIsThumbnailLoaded(true)} />
-      </a>
+      {props.links.at(0)?.isExternal ?
+        <a href={props.links.at(0)?.url} target={props.links.at(0)?.isExternal ? "_blank" : "_self"}>
+          {thumbnail}
+        </a> :
+        <button onClick={() => void navigate(props.links.at(0)!.url)}>
+          {thumbnail}
+        </button>
+      }
       <div className="flex flex-col gap-2">
         {
           props.chipLabels &&
@@ -51,13 +51,17 @@ export default function ProjectCard(props: ProjectCardProps) {
             {props.accentChipLabels.map(label => <Chip key={label} className="text-accent bg-accent-muted" label={label} />)}
           </div>
         }
-
       </div>
       <p className="text-text-muted">
         {props.description}
       </p>
       <div className="flex flex-row flex-wrap gap-2 mt-auto">
-        {props.externalLinks.map(externalLink => <ProjectCardLink key={externalLink.label} label={externalLink.label} url={externalLink.url} />)}
+        {
+          props
+            .links
+            .filter(link => link.isExternal)
+            .map(link => <CardExternalLink key={link.label} label={link.label} url={link.url} />)
+        }
       </div>
     </article>
   )

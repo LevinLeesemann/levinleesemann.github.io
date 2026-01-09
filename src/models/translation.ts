@@ -45,8 +45,9 @@ export type Translation = {
       subtitle: Split
     }
     posts: {
-      title: string
+      readMore: string
       subtitle: string
+      title: string
     }
     projects: {
       title: string
@@ -58,6 +59,7 @@ export type Translation = {
     }
   }
   post: {
+    home: string
     notFound: {
       title: string
       subtitle: Split

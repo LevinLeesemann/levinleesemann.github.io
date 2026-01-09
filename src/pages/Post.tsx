@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import HomeButton from "../components/HomeButton"
 import Subtitle from "../components/Subtitle"
 import Title from "../components/Title"
 import { posts } from "../data/posts"
@@ -15,11 +16,6 @@ export default function Post(props: PostProps) {
   const { slug } = useParams()
   const [height, setHeight] = useState(window.innerHeight)
   const [width, setWidth] = useState(window.innerWidth)
-  const { pathname } = useLocation()
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" })
-  }, [pathname])
 
   const post = posts.find(post => post.id === slug)
 
@@ -56,10 +52,17 @@ export default function Post(props: PostProps) {
   }
 
   return (
-    <article style={{ minHeight: height }} className="">
-      <Title>
-        {post.title[props.language]}
-      </Title>
-    </article>
+    <div>
+      <HomeButton language={props.language} />
+      <article style={{ minHeight: height }} className="flex flex-col justify-center gap-4">
+        <h1 className="w-fit font-bold text-text text-3xl sm:text-4xl md:text-5xl">
+          {post.title[props.language]}
+        </h1>
+        <hr className="border-accent" />
+        <p className="text-text-muted text-sm sm:text-md md:text-lg lg:text-xl">
+          {post.preview[props.language]}
+        </p>
+      </article>
+    </div>
   )
 }

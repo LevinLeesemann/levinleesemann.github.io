@@ -10,7 +10,7 @@ export interface Post {
   id: string
   title: Translated<string>
   datePosted: Date
-  description: Translated<string>
+  preview: Translated<string>
   sections: Translated<PostSection>[]
   thumbnailUrl: ThumbnailUrl
 }

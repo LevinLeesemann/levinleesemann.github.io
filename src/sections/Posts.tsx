@@ -14,7 +14,7 @@ type PostsProps = {
 export default function Posts(props: PostsProps) {
   return (
     <section id="posts" className="flex flex-col gap-8">
-      <Title>
+      <Title className="hover:cursor-pointer" onClick={() => window.location.replace("/#posts")}>
         {translations[props.language].section.posts.title}
       </Title>
       <Subtitle>
@@ -22,7 +22,7 @@ export default function Posts(props: PostsProps) {
       </Subtitle>
       <div className="grid gap-16 grid-cols-1 sm:grid-cols-2">
         {posts.map(post =>
-          <Card key={post.id} chipLabels={[post.datePosted.toLocaleDateString(props.locale, { year: 'numeric', month: 'short', day: 'numeric' })]} description={post.description[props.language]} links={[{ isExternal: false, label: "Link", url: post.id }]} isDarkModeActive={props.isDarkModeActive} thumbnail={post.thumbnailUrl} title={post.title[props.language]} />,
+          <Card key={post.id} chipLabels={[post.datePosted.toLocaleDateString(props.locale, { year: 'numeric', month: 'short', day: 'numeric' })]} description={post.preview[props.language]} links={[{ isExternal: false, label: translations[props.language].section.posts.readMore, url: post.id }]} isDarkModeActive={props.isDarkModeActive} thumbnail={post.thumbnailUrl} title={post.title[props.language]} />,
         )}
       </div>
     </section>

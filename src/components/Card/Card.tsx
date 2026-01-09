@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import type { ThumbnailUrl } from "../../models/thumbnail-url"
 import Chip from "../Chip"
-import CardExternalLink from "./CardLink"
+import CardLink from "./CardLink"
 import CardThumbnail from "./CardThumbnail"
 
 type Link = {
@@ -34,7 +34,7 @@ export default function Card(props: CardProps) {
         <a href={props.links.at(0)?.url} target={props.links.at(0)?.isExternal ? "_blank" : "_self"}>
           {thumbnail}
         </a> :
-        <button onClick={() => void navigate(props.links.at(0)!.url)}>
+        <button className="hover:cursor-pointer" onClick={() => void navigate(props.links.at(0)!.url)}>
           {thumbnail}
         </button>
       }
@@ -56,12 +56,7 @@ export default function Card(props: CardProps) {
         {props.description}
       </p>
       <div className="flex flex-row flex-wrap gap-2 mt-auto">
-        {
-          props
-            .links
-            .filter(link => link.isExternal)
-            .map(link => <CardExternalLink key={link.label} label={link.label} url={link.url} />)
-        }
+        {props.links.map(link => <CardLink key={link.label} isExternal={link.isExternal} label={link.label} url={link.url} />)}
       </div>
     </article>
   )

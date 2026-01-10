@@ -31,8 +31,8 @@ export default function TimelineEntry(props: TimelineEntryProps) {
                 <p className="text-text">
                   {workExperience.title[props.language]}
                 </p>
-                <div className="flex flex-row gap-2 text-xs">
-                  {workExperience.specializationIds?.map(id => <Chip key={id} className="text-accent bg-accent-muted" label={workExperienceSpecializations[id][props.language]} />)}
+                <div className="flex flex-row gap-1 text-xs">
+                  {workExperience.specializationIds?.map(id => <Chip key={id} className="text-text bg-background" label={workExperienceSpecializations[id][props.language]} />)}
                 </div>
               </div>
               <p className="text-text-muted text-sm">

@@ -54,6 +54,7 @@ export const translations: Record<Language, Translation> = {
         },
       },
       posts: {
+        new: "New",
         readMore: "Read more",
         subtitle: "From technical challenges to key design decisions",
         title: "Lessons learned",
@@ -142,6 +143,7 @@ export const translations: Record<Language, Translation> = {
         },
       },
       posts: {
+        new: "Neu",
         readMore: "Weiterlesen",
         subtitle: "Von technischen Herausforderungen bis zu zentralen Designentscheidungen",
         title: "Meine Erkenntnisse",

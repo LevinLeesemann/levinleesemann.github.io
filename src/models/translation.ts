@@ -45,6 +45,7 @@ export type Translation = {
       subtitle: Split
     }
     posts: {
+      new: string
       readMore: string
       subtitle: string
       title: string
@@ -54,7 +55,7 @@ export type Translation = {
       subtitle: Split
     }
     welcome: {
-      title: Split 
+      title: Split
       subtitle: string
     }
   }

@@ -32,8 +32,3 @@
   --section-break: var(--color-zinc-900);
   --text: oklch(100% 0 0);
 }
-
-.text-shadow {
-  filter:
-    drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background)) drop-shadow(0 0 8px var(--background));
-}

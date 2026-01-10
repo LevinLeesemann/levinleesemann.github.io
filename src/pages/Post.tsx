@@ -54,14 +54,29 @@ export default function Post(props: PostProps) {
   return (
     <div>
       <HomeButton language={props.language} />
-      <article style={{ minHeight: height }} className="flex flex-col justify-center gap-4">
-        <h1 className="w-fit font-bold text-text text-3xl sm:text-4xl md:text-5xl">
-          {post.title[props.language]}
-        </h1>
-        <hr className="border-accent" />
-        <p className="text-text-muted text-sm sm:text-md md:text-lg lg:text-xl">
-          {post.preview[props.language]}
-        </p>
+      <article>
+        <header style={{ minHeight: height }} className="flex flex-col justify-center gap-4">
+          <h1 className="w-fit font-bold text-text text-3xl sm:text-4xl md:text-5xl">
+            {post.title[props.language]}
+          </h1>
+          <hr className="border-accent" />
+          <p className="text-text-muted text-sm sm:text-md md:text-lg lg:text-xl">
+            {post.preview[props.language]}
+          </p>
+        </header>
+        <div className="flex flex-col gap-16">
+          {
+            post.sections.map(section =>
+              <section id={section.id} key={section.id}>
+                <h2 className="w-fit text-text text-xl sm:text-2xl md:text-3xl hover:cursor-pointer">
+                  <a onClick={() => window.location.replace(`#${section.id}`)}>
+                    {section.title[props.language]}
+                  </a>
+                </h2>
+              </section>,
+            )
+          }
+        </div>
       </article>
     </div>
   )

@@ -53,7 +53,7 @@ export default function Home(props: HomeProps) {
       <div className="flex flex-col gap-32">
         <Projects isDarkModeActive={props.isDarkModeActive} language={props.language} />
         <Experience language={props.language} />
-        <Posts isDarkModeActive={props.isDarkModeActive} language={props.language} locale={props.locale} />
+        {import.meta.env.DEV && <Posts isDarkModeActive={props.isDarkModeActive} language={props.language} locale={props.locale} />}
       </div>
     </div>
   )

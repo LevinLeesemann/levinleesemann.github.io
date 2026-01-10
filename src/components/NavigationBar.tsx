@@ -24,7 +24,7 @@ export default function NavigationBar(props: NavigationBarProps) {
         <BarGroupButton icon={PiHandWaving} isActive={props.activeSection === "welcome"} label={translations[props.language].bar.navigation.welcome} onClick={() => { goTo("welcome") }} tooltipLocation="bottom" />
         <BarGroupButton icon={GoFileCode} isActive={props.activeSection === "projects"} label={translations[props.language].bar.navigation.projects} onClick={() => goTo("projects")} tooltipLocation="bottom" />
         <BarGroupButton icon={GoBriefcase} isActive={props.activeSection === "experience"} label={translations[props.language].bar.navigation.experience} onClick={() => goTo("experience")} tooltipLocation="bottom" />
-        <BarGroupButton icon={GoBook} isActive={props.activeSection === "posts"} label={translations[props.language].bar.navigation.posts} onClick={() => goTo("posts")} tooltipLocation="bottom" />
+        {import.meta.env.DEV && <BarGroupButton icon={GoBook} isActive={props.activeSection === "posts"} label={translations[props.language].bar.navigation.posts} onClick={() => goTo("posts")} tooltipLocation="bottom" />}
       </BarGroup>
     </nav>
   )

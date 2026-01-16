@@ -22,3 +22,7 @@ type Image = {
   url: string,
   label: Translated<string>
 }
+
+export function isImage(content: PostSectionContent): content is Image {
+  return 'url' in content && 'label' in content
+}

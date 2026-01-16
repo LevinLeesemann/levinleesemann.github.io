@@ -6,6 +6,7 @@ import Title from "../components/Title"
 import { posts } from "../data/posts"
 import { translations } from "../data/translations"
 import type { Language } from "../models/language"
+import { isImage } from "../models/post"
 
 type PostProps = {
   language: Language
@@ -60,19 +61,30 @@ export default function Post(props: PostProps) {
             {post.title[props.language]}
           </h1>
           <hr className="border-accent" />
-          <p className="text-text-muted text-sm sm:text-md md:text-lg lg:text-xl">
+          <p className="text-text-muted text-md sm:text-lg md:text-xl lg:text-2xl">
             {post.preview[props.language]}
           </p>
         </header>
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-32">
           {
             post.sections.map(section =>
-              <section id={section.id} key={section.id}>
-                <h2 className="w-fit text-text text-xl sm:text-2xl md:text-3xl hover:cursor-pointer">
-                  <a onClick={() => window.location.replace(`#${section.id}`)}>
-                    {section.title[props.language]}
-                  </a>
-                </h2>
+              <section id={section.id} key={section.id} className="flex flex-col gap-8">
+                <div className="flex flex-row gap-4 items-center">
+                  <div className="relative size-2 rounded-full bg-accent" />
+                  <h2 className="w-fit text-text text-2xl sm:text-3xl md:text-4xl hover:cursor-pointer">
+                    <a onClick={() => window.location.replace(`#${section.id}`)}>
+                      {section.title[props.language]}
+                    </a>
+                  </h2>
+
+                </div>
+                <div className="flex flex-col gap-8">
+                  {section.content.map((content, index) =>
+                    isImage(content) ?
+                      <img key={`${section.id}-${index.toString()}`} className="self-center" src={content.url} /> :
+                      <p key={`${section.id}-${index.toString()}`} className="font-light text-text text-base sm:text-lg md:text-xl lg:text-2xl">{content[props.language]}</p>,
+                  )}
+                </div>
               </section>,
             )
           }

@@ -16,7 +16,7 @@ type PostSection = {
   content: PostSectionContent[]
 }
 
-type PostSectionContent = Translated<string> | Image
+type PostSectionContent = Translated<string> | Image | string
 
 type Image = {
   url: string,
@@ -24,5 +24,5 @@ type Image = {
 }
 
 export function isImage(content: PostSectionContent): content is Image {
-  return 'url' in content && 'label' in content
+  return typeof content != "string" && "url" in content && "label" in content
 }

@@ -76,13 +76,14 @@ export default function Post(props: PostProps) {
                       {section.title[props.language]}
                     </a>
                   </h2>
-
                 </div>
                 <div className="flex flex-col gap-8">
                   {section.content.map((content, index) =>
                     isImage(content) ?
                       <img key={`${section.id}-${index.toString()}`} className="self-center" src={content.url} /> :
-                      <p key={`${section.id}-${index.toString()}`} className="font-light text-text text-base sm:text-lg md:text-xl lg:text-2xl">{content[props.language]}</p>,
+                      typeof (content) == "string" ?
+                        <p key={`${section.id}-${index.toString()}`} className="font-mono text-text-muted text-xs sm:text-sm md:text-base lg:text-lg whitespace-pre-wrap">{content}</p> :
+                        <p key={`${section.id}-${index.toString()}`} className="font-light text-text text-base sm:text-lg md:text-xl lg:text-2xl">{content[props.language]}</p>,
                   )}
                 </div>
               </section>,

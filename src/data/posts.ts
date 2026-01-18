@@ -23,16 +23,53 @@ export const posts: Post[] = [
         },
         content: [
           {
-            english: "When I was offered the chance to build a cross-platform audio engine for Gap Click and Beat Note, the underlying motivation was very practical. For some context, both apps rely on adjustable real-time audio and music features with precise timing. They currently use a similar open-source audio stack, which works reasonably well in isolation, but maintaining and updating their respective components separately has become tedious and prone to bugs over time. Additionally, Gap Click runs on Android and iOS, while Beat Note is currently only supported on iOS, meaning that as more platforms are added, the amount of audio code to maintain continues to grow.",
-            german: "Als ich die Möglichkeit bekam, eine plattformübergreifende Audio-Engine für Gap Click und Beat Note zu entwickeln, war die Motivation sehr praktisch. Zur Einordnung: Beide Apps setzen auf anpassbare Echtzeit-Audio- und Musikfunktionen, die präzises Timing erfordern. Derzeit verwenden sie einen ähnlichen Open-Source-Audiostack, der isoliert gut funktioniert, aber die einzelnen Komponenten getrennt zu warten und zu aktualisieren, ist auf Dauer mühsam und fehleranfällig. Außerdem läuft Gap Click auf Android und iOS, während Beat Note bisher nur auf iOS unterstützt wird, was bedeutet, dass mit jeder zusätzlichen Plattform der zu wartende Audio-Code weiter wächst.",
+            english: "When I was offered the chance to build a cross-platform audio engine for Gap Click and Beat Note, the underlying motivation was very practical. They both currently use a similar open-source audio stack, which works reasonably well in isolation, but maintaining and updating their respective components separately has become tedious and prone to bugs over time.",
+            german: "",
+          },
+          {
+            english: "Additionally, Gap Click runs on Android and iOS, while Beat Note is currently only supported on iOS, meaning that as more platforms are added, the amount of audio code to maintain continues to grow.",
+            german: "",
           },
           {
             english: "It made sense to consider a unified solution designed to serve both apps and future projects. Ideally, this engine would provide a consistent interface so that whether on iOS, Android, or web, its interface and behavior would remain consistent. Cross-platform support was not just a nice-to-have; it was essential.",
-            german: "Es machte daher Sinn, eine einheitliche Lösung zu entwickeln, die beide Apps und mögliche zukünftige Projekte abdeckt. Idealerweise würde diese Engine eine konsistente Schnittstelle bieten, sodass sie auf iOS, Android oder im Web integriert werden kann und Schnittstelle sowie Verhalten weitgehend identisch bleiben. Plattformübergreifende Unterstützung war dabei nicht nur ein nettes Extra, sie war essentiell.",
+            german: "",
           },
           {
             english: "The current open-source stack, along with other available alternatives, either lack the capabilities needed for current and future features, are not maintained actively enough for multiple production apps, or do not offer sufficient testing, documentation, or extensibility. That is when the idea for a custom, shared audio layer started to take shape, one that could be controlled, extended, and relied upon across all apps, without needing to reimplement the same logic on each platform.",
-            german: "Der aktuelle Open-Source-Stack und andere verfügbare Alternativen bieten entweder nicht die Funktionen, die für aktuelle und zukünftige Features nötig sind, werden nicht aktiv genug gepflegt, um in mehreren Produktions-Apps zuverlässig eingesetzt zu werden, oder verfügen nicht über ausreichende Tests, Dokumentation oder Erweiterbarkeit. So entstand die Idee einer eigenen, gemeinsamen Audio-Schicht, die sich kontrollieren, erweitern und in allen Apps zuverlässig einsetzen lässt, ohne die gleiche Logik auf jeder Plattform neu implementieren zu müssen.",
+            german: "",
+          },
+        ],
+      },
+      {
+        id: "the-idea",
+        title: {
+          english: "The idea",
+          german: "Die Idee",
+        },
+        content: [
+          {
+            english: "An obvious problem up front was that whatever ended up being built had to integrate with each platform's native audio system. If you take a quick look at the real-time editing and playback features that Gap Click and Beat note provide, it becomes quite obvious that high level APIs on each platform will not suffice, as they often only offer simple scheduling and playback controls. Ultimately, that meant I would be working with Audio Unit on iOS, Oboe on Android, and the Web Audio API on web.",
+            german: "",
+          },
+          {
+            english: "As previously stated, one of the main goals was to reduce duplicated logic across platforms. Both Gap Click and Beat Note already handle some shared code using Kotlin Multiplatform (KMP), which lets you write common logic once and call it from each target's native code. This approach works well for higher-level logic, but low-level audio has some tighter requirements.",
+            german: "",
+          },
+          {
+            english: "A key piece of logic that needed to be shared is the system that controls how audio is sequenced, played back, and integrated with (to emits events, for example). KMP was considered for this purpose, but there are a couple of problems.",
+            german: "",
+          },
+          {
+            english: "On Android, Oboe is a C++ API (which in turn requires going through JNI), and more importantly, real-time audio guarantees are extremely hard to meet in a garbage-collected environment like the JVM. This makes handling timing-sensitive audio logic purely in KMP a non-starter. Web and iOS don't quite have the same issues due to dedicated audio threads, but after some initial research and investigation integrating KMP generated logic with them also appeared as though it wouldn't be as straightforward as it seemed.",
+            german: "",
+          },
+          {
+            english: "Most developers in this space would automatically reach for C++, since it's the standard for low-level audio work. But another option had been making noise in recent years: Rust. It provides safer memory management, excellent performance, arguably better ergonomics for developers than C++, and C-style ABI integration (we'll discuss this throughout each native layer's section). At the time of evaluation, Rust hadn't been used widely in mainstream audio apps, which made it an exciting chance to learn a new language while working in a domain I was already familiar with.",
+            german: "",
+          },
+          {
+            english: "You might be wondering how Kotlin Multiplatform fits in if Rust is handling the shared audio logic. That will be explained later in the post, but at a high level, the stack looks like this: Kotlin Multiplatform for shared app logic, native layers on each platform for audio integration, and Rust for the underlying real-time audio engine.",
+            german: "",
           },
         ],
       },
@@ -42,7 +79,45 @@ export const posts: Post[] = [
           english: "Web first",
           german: "Web zuerst",
         },
-        content: [],
+        content: [
+          {
+            english: "Web wasn't chosen arbitrarily as a starting point. I had already used the audio APIs on Android and iOS when I worked on my metronome app, Tempus, but before committing to the cross-platform architecture, I needed to see if the web would work in the way that I expected it to.",
+            german: "",
+          },
+          {
+            english: "I started with a basic KMP interface that defined a few simple functions a consumer app (like Gap Click or Beat Note) could call, such as \"play\" and \"pause\". At this point, it was mostly about figuring out how apps would interact with the engine in principle.",
+            german: "",
+          },
+          {
+            english: "On the web side, I set up a straightforward TypeScript library for the Web Audio API integration and a test harness website using Vite. The harness mimicked a consumer app so I could experiment with playback in a controlled environment. It was rough, but it let me play around with the concepts before committing to anything more complicated.",
+            german: "",
+          },
+          {
+            english: "For the Rust engine itself, I built a MVP. Honestly, it was a messy first attempt. I was still learning Rust and trying to understand how WASM worked via wasm-bindgen. At first, I relied on global statics in Rust, a bit like this:",
+            german: "",
+          },
+          "static mut OUTPUT: Option<Box<[f32]>> = None;\nstatic mut CONSUMER: Option<NonNull<Consumer>> = None;\nstatic ENGINE: OnceLock<Mutex<Engine>> = OnceLock::new();\n\n#[wasm_bindgen]\npub fn initialize_engine(callback_size: u16, sample_rate: u32) {\n\tunsafe {\n\t\tOUTPUT = ...;\n\t\tCONSUMER = ...;\n\t}\n\n\tENGINE.set(...);\n}",
+          {
+            english: "because it seemed like the only way to let the outside world interact with Rust at first.",
+            german: "",
+          },
+          {
+            english: "As you can imagine, it was a bit messy. Even with my limited experience in ABI and Rust, I could tell this wasn't the way things were supposed to be setup, and that it wasn't going to be sustainable in the long run. But it did allow me to experiment, and for a proof of concept it was enough.",
+            german: "",
+          },
+          {
+            english: "Finally, I was able to write an AudioWorklet to call into the Rust WASM code to read some basic audio data (a continuously generated sine wave). Unfortunately, this was another learning curve. Managing shared memory in WASM is tricky, and without care certain parts of the WASM code would be reinitialized and, at times, break the entire integration.",
+            german: "",
+          },
+          {
+            english: "I spent a lot of time reading through docs, and even ended posting an issue on the wasm-bindgen GitHub page. The integration between TypeScript and Rust WASM caused quite a few frustrating nights and weekends of development.",
+            german: "",
+          },
+          {
+            english: "Despite all the rough edges, it worked. I could \"start\", \"stop\", \"play\", and \"pause\" the engine, and play back the generated audio from Rust in real time. It wasn't neat, and I knew there was a better way, but it proved that Rust and WASM could actually serve as a foundation for a cross-platform audio engine, even on the web.",
+            german: "",
+          },
+        ],
       },
       {
         id: "the-core-not-the-movie",

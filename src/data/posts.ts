@@ -74,6 +74,65 @@ export const posts: Post[] = [
         ],
       },
       {
+        id: "the-inner-workings-of-audio-systems",
+        title: {
+          english: "The inner workings of audio systems",
+          german: "Wie Audiosysteme intern funktionieren",
+        },
+        content: [
+          {
+            english: "We could definitely get into the nitty gritty of digital audio, but at a high level audio is represented as a sequence of floating point values. Each float is typically between -1.0 and 1.0 and represents the amplitude of the signal at a given point in time. Rather than working with individual samples, audio systems process these values in chunks (buffers). For reference, buffers are typically powers of two in size, often around 256 or 512 samples.",
+            german: "",
+          },
+          {
+            english: "Most real-time audio systems are built around a producer-consumer model. There is usually a dedicated audio thread that acts as the consumer, being owned by the platform's audio system, and it's responsible for pulling buffers at a very precise interval (often tied closely to the underlying audio hardware). The consumer looks slightly different on each platform in this project, for example an AudioWorklet on the web or an Audio Unit callback on iOS, however they ultimately follow the same kind of logic (more on that later).",
+            german: "",
+          },
+          {
+            english: "On the other side is the producer, which is responsible for generating audio data ahead of time. This typically runs on a separate thread, not the main UI thread, and continuously fills buffers with audio samples so they are ready when the audio thread asks for them.",
+            german: "",
+          },
+          {
+            english: "The producer and consumer are most commonly connected using a ring buffer. A ring buffer is a contiguous block of memory that is reused in a circular fashion. When the producer reaches the end of the buffer, it wraps back around to the beginning. For audio, this works well by keeping the producer slightly ahead of the consumer, usually by a few buffers. As the consumer reads buffers and the producer writes new ones, both advance through the ring at (roughly) the same pace.",
+            german: "",
+          },
+          {
+            english: "If the producer ever falls too far behind, the consumer has nothing to play, which results in audible glitches, such as clicks and pops (artifacts). While the model is simple in theory, it places strict constraints on timing, memory allocation, and thread behavior, and those constraints end up driving many of the design decisions down the road.",
+            german: "",
+          },
+          {
+            english: "One key thing to note at this point is that the consumer needs to run in real-time, meaning no blocking operations (such as memory allocation, I/O, etc.). The producer doesn't quite have this constraint since it's a few buffers ahead, but it should still stick to performant operations as to not fall too far behind.",
+            german: "",
+          },
+        ],
+      },
+      {
+        id: "the-core-not-the-movie",
+        title: {
+          english: "The core (not the movie)",
+          german: "Der Innere Kern (nicht der Film)",
+        },
+        content: [
+          {
+            english: "For the Rust engine I started off with a simple MVP. It was honestly a messy first attempt. At the time, I was still learning Rust and trying to understand how WebAssembly worked through wasm-bindgen. My initial approach relied heavily on global statics in Rust, since that seemed like the only way to let JavaScript interact with Rust state in a WASM context. Here's what that looked like, roughly:",
+            german: "",
+          },
+          "static mut OUTPUT: Option<Box<[f32]>> = None;\nstatic mut CONSUMER: Option<NonNull<Consumer>> = None;\nstatic ENGINE: OnceLock<Mutex<Engine>> = OnceLock::new();\n\n#[wasm_bindgen]\npub fn initialize_engine(callback_size: u16, sample_rate: u32) {\n\tunsafe {\n\t\tOUTPUT = ...;\n\t\tCONSUMER = ...;\n\t}\n\n\tENGINE.set(...);\n}",
+          {
+            english: "As you might expect, this got unwieldy quickly. Even with my limited experience with working on ABIs and Rust, it was obvious that this was't the structure that would be standing in the long run. Regardless, it was enough for experimentation and a proof of concept.",
+            german: "",
+          },
+          {
+            english: "One design decision that emerged early was to let each native platform manage its own threading model. I was pushed towards this at first due to technical constraints, since creating threads in Rust for WASM targets wasn't supported at the time of writing. After letting this problem simmer though, this approach also enables finer-grained control over resource usage, which was especially important considering the main consumers of this audio engine are mobile devices where battery life and scheduling behavior matter a lot.",
+            german: "",
+          },
+          {
+            english: "At this stage, the producer would only generate a continuous sine wave. The goal was not musical complexity, but predictability. A simple signal made it much easier to validate behavior across platforms without introducing additional variables like file I/O or decoding.",
+            german: "",
+          },
+        ],
+      },
+      {
         id: "web-first",
         title: {
           english: "Web first",
@@ -81,7 +140,7 @@ export const posts: Post[] = [
         },
         content: [
           {
-            english: "Web wasn't chosen arbitrarily as a starting point. I had already used the audio APIs on Android and iOS when I worked on my metronome app, Tempus, but before committing to the cross-platform architecture, I needed to see if the web would work in the way that I expected it to.",
+            english: "Web wasn't chosen arbitrarily as a platform starting point. I had already used the audio APIs on Android and iOS when I worked on my metronome app, Tempus, but before committing to the cross-platform architecture, I needed to see if the web would work in the way that I expected it to.",
             german: "",
           },
           {
@@ -90,19 +149,6 @@ export const posts: Post[] = [
           },
           {
             english: "On the web side, I set up a straightforward TypeScript library for the Web Audio API integration and a test harness website using Vite. The harness mimicked a consumer app so I could experiment with playback in a controlled environment. It was rough, but it let me play around with the concepts before committing to anything more complicated.",
-            german: "",
-          },
-          {
-            english: "For the Rust engine itself, I built a MVP. Honestly, it was a messy first attempt. I was still learning Rust and trying to understand how WASM worked via wasm-bindgen. At first, I relied on global statics in Rust, a bit like this:",
-            german: "",
-          },
-          "static mut OUTPUT: Option<Box<[f32]>> = None;\nstatic mut CONSUMER: Option<NonNull<Consumer>> = None;\nstatic ENGINE: OnceLock<Mutex<Engine>> = OnceLock::new();\n\n#[wasm_bindgen]\npub fn initialize_engine(callback_size: u16, sample_rate: u32) {\n\tunsafe {\n\t\tOUTPUT = ...;\n\t\tCONSUMER = ...;\n\t}\n\n\tENGINE.set(...);\n}",
-          {
-            english: "because it seemed like the only way to let the outside world interact with Rust at first.",
-            german: "",
-          },
-          {
-            english: "As you can imagine, it was a bit messy. Even with my limited experience in ABI and Rust, I could tell this wasn't the way things were supposed to be setup, and that it wasn't going to be sustainable in the long run. But it did allow me to experiment, and for a proof of concept it was enough.",
             german: "",
           },
           {
@@ -118,22 +164,6 @@ export const posts: Post[] = [
             german: "",
           },
         ],
-      },
-      {
-        id: "the-core-not-the-movie",
-        title: {
-          english: "The core (not the movie)",
-          german: "Der Innere Kern (nicht der Film)",
-        },
-        content: [],
-      },
-      {
-        id: "the-inner-workings-of-audio-systems",
-        title: {
-          english: "The inner workings of audio systems",
-          german: "Wie Audiosysteme intern funktionieren",
-        },
-        content: [],
       },
       {
         id: "ios-integration",

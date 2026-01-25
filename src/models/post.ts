@@ -13,16 +13,5 @@ export type Post = {
 type PostSection = {
   id: string
   title: Translated<string>
-  content: PostSectionContent[]
-}
-
-type PostSectionContent = Translated<string> | Image | string
-
-type Image = {
-  url: string,
-  label: Translated<string>
-}
-
-export function isImage(content: PostSectionContent): content is Image {
-  return typeof content != "string" && "url" in content && "label" in content
+  content: Translated<string>
 }

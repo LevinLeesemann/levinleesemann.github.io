@@ -30,7 +30,7 @@ export default function App() {
         <div className="grow max-w-5xl mx-auto">
           <Routes>
             <Route path="/" element={<Home isDarkModeActive={isDarkModeActive} language={language} locale={locale} />} />
-            <Route path="/:slug" element={<Post language={language} />} />
+            <Route path="/:slug" element={<Post isDarkModeActive={isDarkModeActive} language={language} />} />
           </Routes>
           <Footer language={language} />
         </div>

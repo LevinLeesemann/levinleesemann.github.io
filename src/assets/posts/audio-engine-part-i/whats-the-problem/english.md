@@ -1,0 +1,7 @@
+When I was offered the chance to build a cross-platform audio engine for [Gap Click](https://gapclick.app/) and [Beat Note](https://beat-note.app/), the underlying motivation was very practical. They both currently use a similar open-source audio stack, which works reasonably well in isolation, but maintaining and updating their respective components separately has become tedious and prone to bugs over time.
+
+Additionally, Gap Click runs on Android and iOS, while Beat Note is currently only supported on iOS, meaning that as more platforms are added, the amount of audio code to maintain continues to grow.
+
+It made sense to consider a unified solution designed to serve both apps and future projects. Ideally, this engine would provide a consistent interface so that whether on iOS, Android, or web, its interface and behavior would remain consistent. Cross-platform support was not just a nice-to-have, it was essential.
+
+The current open-source stack, along with other available alternatives, either lack the capabilities needed for current and future features, are not maintained actively enough for multiple production apps, or do not offer sufficient testing, documentation, or extensibility. That is when the idea for a custom, shared audio layer started to take shape, one that could be controlled, extended, and relied upon across all apps, without needing to reimplement the same logic on each platform.

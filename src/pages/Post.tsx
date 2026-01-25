@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
+import Markdown from "react-markdown"
 import { useNavigate, useParams } from "react-router-dom"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { oneDark, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism"
 import HomeButton from "../components/HomeButton"
 import Subtitle from "../components/Subtitle"
 import Title from "../components/Title"
 import { posts } from "../data/posts"
 import { translations } from "../data/translations"
 import type { Language } from "../models/language"
-import { isImage } from "../models/post"
 
 type PostProps = {
+  isDarkModeActive: boolean
   language: Language
 }
 
@@ -52,6 +55,8 @@ export default function Post(props: PostProps) {
     )
   }
 
+  const { isDarkModeActive } = props
+
   return (
     <div>
       <HomeButton language={props.language} />
@@ -77,20 +82,40 @@ export default function Post(props: PostProps) {
                     </a>
                   </h2>
                 </div>
-                <div className="flex flex-col gap-8">
-                  {section.content.map((content, index) =>
-                    isImage(content) ?
-                      <img key={`${section.id}-${index.toString()}`} className="self-center" src={content.url} /> :
-                      typeof (content) == "string" ?
-                        <p key={`${section.id}-${index.toString()}`} className="font-mono text-text-muted text-xs sm:text-sm md:text-base lg:text-lg whitespace-pre-wrap">{content}</p> :
-                        <p key={`${section.id}-${index.toString()}`} className="font-light text-text text-base sm:text-lg md:text-xl lg:text-2xl">{content[props.language]}</p>,
-                  )}
+                <div className="flex flex-col gap-8 font-light text-text text-base sm:text-lg md:text-xl lg:text-2xl">
+                  <Markdown
+                    components={{
+                      a: ({ ...props }) => (
+                        <a
+                          {...props}
+                          className="underline text-accent"
+                          target="_blank"
+                        />
+                      ),
+                      code({ children, className }) {
+                        const match = /language-(\w+)/.exec(className ?? "")
+                        const codeString =
+                          typeof children === "string" || typeof children === "number"
+                            ? String(children).replace(/\n$/, "")
+                            : ""
+
+                        return match ?
+                          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                          <SyntaxHighlighter language={match[1]} style={isDarkModeActive ? oneDark : oneLight}>
+                            {codeString}
+                          </SyntaxHighlighter> :
+                          <code className={className}>{children}</code>
+                      },
+                    }}
+                  >
+                    {section.content[props.language]}
+                  </Markdown>
                 </div>
               </section>,
             )
           }
         </div>
-      </article>
-    </div>
+      </article >
+    </div >
   )
 }

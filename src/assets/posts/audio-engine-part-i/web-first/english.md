@@ -1,4 +1,4 @@
-Web wasn't chosen arbitrarily as the first integration. I had already used the audio APIs on Android and iOS when I worked on my metronome app, Tempus, but before committing to the cross-platform architecture, I needed to see if the web would work in the way that I expected it to.
+Web wasn't chosen arbitrarily as the first integration. I had already used the audio APIs on Android and iOS when I worked on my metronome app, [Tempus](https://github.com/LevinLeesemann/Tempus), but before committing to the cross-platform architecture, I needed to see if the web would work in the way that I expected it to.
 
 I started with a basic KMP interface that defined a few simple functions a consumer app (like Gap Click or Beat Note) could call. At this point, it was mostly about figuring out how apps would interact with the engine in principle:
 

@@ -1,17 +1,29 @@
 import audioEnginePartIAndroidIntegrationEnglish from "../assets/posts/audio-engine-part-i/android-integration/english.md?raw"
+import audioEnginePartIAndroidIntegrationGerman from "../assets/posts/audio-engine-part-i/android-integration/german.md?raw"
 import audioEnginePartIAutomationAndQualityOfLifeEnglish from "../assets/posts/audio-engine-part-i/automation-and-quality-of-life/english.md?raw"
+import audioEnginePartIAutomationAndQualityOfLifeGerman from "../assets/posts/audio-engine-part-i/automation-and-quality-of-life/german.md?raw"
 import audioEnginePartIBringingItAllTogetherEnglish from "../assets/posts/audio-engine-part-i/bringing-it-all-together/english.md?raw"
+import audioEnginePartIBringingItAllTogetherGerman from "../assets/posts/audio-engine-part-i/bringing-it-all-together/german.md?raw"
 import audioEnginePartICleaningUpAfterYourselfEnglish from "../assets/posts/audio-engine-part-i/cleaning-up-after-yourself/english.md?raw"
+import audioEnginePartICleaningUpAfterYourselfGerman from "../assets/posts/audio-engine-part-i/cleaning-up-after-yourself/german.md?raw"
 import audioEnginePartIIosIntegrationEnglish from "../assets/posts/audio-engine-part-i/ios-integration/english.md?raw"
+import audioEnginePartIIosIntegrationGerman from "../assets/posts/audio-engine-part-i/ios-integration/german.md?raw"
 import audioEnginePartILessonsLearnedEnglish from "../assets/posts/audio-engine-part-i/lessons-learned/english.md?raw"
+import audioEnginePartILessonsLearnedGerman from "../assets/posts/audio-engine-part-i/lessons-learned/german.md?raw"
 import audioEnginePartINextStepsEnglish from "../assets/posts/audio-engine-part-i/next-steps/english.md?raw"
+import audioEnginePartINextStepsGerman from "../assets/posts/audio-engine-part-i/next-steps/german.md?raw"
 import audioEnginePartITheCoreNotTheMovieEnglish from "../assets/posts/audio-engine-part-i/the-core-not-the-movie/english.md?raw"
+import audioEnginePartITheCoreNotTheMovieGerman from "../assets/posts/audio-engine-part-i/the-core-not-the-movie/german.md?raw"
 import audioEnginePartITheIdeaEnglish from "../assets/posts/audio-engine-part-i/the-idea/english.md?raw"
+import audioEnginePartITheIdeaGerman from "../assets/posts/audio-engine-part-i/the-idea/german.md?raw"
 import audioEnginePartITheInnerWorkingsOFAudioSystemsEnglish from "../assets/posts/audio-engine-part-i/the-inner-workings-of-audio-systems/english.md?raw"
+import audioEnginePartITheInnerWorkingsOFAudioSystemsGerman from "../assets/posts/audio-engine-part-i/the-inner-workings-of-audio-systems/german.md?raw"
 import audioEnginePartIThumbnailDark from "../assets/posts/audio-engine-part-i/thumbnail/dark.png"
 import audioEnginePartIThumbnailLight from "../assets/posts/audio-engine-part-i/thumbnail/light.png"
 import audioEnginePartIWebFirstEnglish from "../assets/posts/audio-engine-part-i/web-first/english.md?raw"
+import audioEnginePartIWebFirstGerman from "../assets/posts/audio-engine-part-i/web-first/german.md?raw"
 import audioEnginePartIWhatsTheProblemEnglish from "../assets/posts/audio-engine-part-i/whats-the-problem/english.md?raw"
+import audioEnginePartIWhatsTheProblemGerman from "../assets/posts/audio-engine-part-i/whats-the-problem/german.md?raw"
 import type { Post } from "../models/post"
 
 export const posts: Post[] = [
@@ -35,7 +47,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartIWhatsTheProblemEnglish,
-          german: "",
+          german: audioEnginePartIWhatsTheProblemGerman,
         },
       },
       {
@@ -46,7 +58,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartITheIdeaEnglish,
-          german: "",
+          german: audioEnginePartITheIdeaGerman,
         },
       },
       {
@@ -57,7 +69,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartITheInnerWorkingsOFAudioSystemsEnglish,
-          german: "",
+          german: audioEnginePartITheInnerWorkingsOFAudioSystemsGerman,
         },
       },
       {
@@ -68,7 +80,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartITheCoreNotTheMovieEnglish,
-          german: "",
+          german: audioEnginePartITheCoreNotTheMovieGerman,
         },
       },
       {
@@ -79,7 +91,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartIWebFirstEnglish,
-          german: "",
+          german: audioEnginePartIWebFirstGerman,
         },
       },
       {
@@ -90,7 +102,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartIIosIntegrationEnglish,
-          german: "",
+          german: audioEnginePartIIosIntegrationGerman,
         },
       },
       {
@@ -101,7 +113,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartIAndroidIntegrationEnglish,
-          german: "",
+          german: audioEnginePartIAndroidIntegrationGerman,
         },
       },
       {
@@ -112,7 +124,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartIBringingItAllTogetherEnglish,
-          german: "",
+          german: audioEnginePartIBringingItAllTogetherGerman,
         },
       },
       {
@@ -123,7 +135,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartICleaningUpAfterYourselfEnglish,
-          german: "",
+          german: audioEnginePartICleaningUpAfterYourselfGerman,
         },
       },
       {
@@ -134,7 +146,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartIAutomationAndQualityOfLifeEnglish,
-          german: "",
+          german: audioEnginePartIAutomationAndQualityOfLifeGerman,
         },
       },
       {
@@ -145,7 +157,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartILessonsLearnedEnglish,
-          german: "",
+          german: audioEnginePartILessonsLearnedGerman,
         },
       },
       {
@@ -156,7 +168,7 @@ export const posts: Post[] = [
         },
         content: {
           english: audioEnginePartINextStepsEnglish,
-          german: "",
+          german: audioEnginePartINextStepsGerman,
         },
       },
     ],

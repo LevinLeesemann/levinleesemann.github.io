@@ -1,0 +1,7 @@
+Als ich die Möglichkeit bekam, eine plattformübergreifende Audio-Engine für [Gap Click](https://gapclick.app/) und [Beat Note](https://beat-note.app/) zu bauen, war die Motivation dahinter sehr praktisch. Beide Apps nutzen derzeit einen ähnlichen Open-Source-Audio-Stack, der isoliert betrachtet ganz gut funktioniert, aber das separate Pflegen und Aktualisieren der jeweiligen Komponenten wurde mit der Zeit mühsam und fehleranfällig.
+
+Außerdem läuft Gap Click auf Android und iOS, während Beat Note momentan nur auf iOS unterstützt wird. Das bedeutet, dass mit jeder zusätzlichen Plattform der zu wartende Audio-Code weiter wächst.
+
+Es machte daher Sinn, über eine einheitliche Lösung nachzudenken, die sowohl beide Apps als auch zukünftige Projekte bedienen könnte. Idealerweise sollte diese Engine ein konsistentes Interface bieten, sodass sie sich auf iOS, Android oder im Web gleich verhält. Cross-Plattform-Support war dabei nicht nur ein nettes Extra, sondern essenziell.
+
+Der aktuelle Open-Source-Stack und andere verfügbare Alternativen hatten entweder nicht die nötigen Funktionen für aktuelle und zukünftige Features, wurden nicht aktiv genug für mehrere Produktions-Apps gepflegt oder boten nicht genügend Tests, Dokumentation oder Erweiterbarkeit. Genau hier begann die Idee für eine maßgeschneiderte, gemeinsame Audio-Schicht Form anzunehmen – eine Engine, die kontrolliert, erweitert und zuverlässig über alle Apps hinweg genutzt werden konnte, ohne dass dieselbe Logik auf jeder Plattform neu implementiert werden musste.

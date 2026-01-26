@@ -10,4 +10,4 @@ Most developers in this space would automatically reach for C++, since it's the 
 
 You might be wondering how KMP fits in if Rust is handling the shared audio logic. That will become apparent throughout the post, but at a high level, the stack looks like this: KMP for shared app logic (`platform` layer), a layer specific to each target for audio API integration (`native` layers), and Rust for the underlying real-time audio engine (`core` layer). It looks like this:
 
-![Architecture](../../../../../public//architecture.png)
+![Architecture](/architecture.png)

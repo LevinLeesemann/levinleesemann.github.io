@@ -16,7 +16,7 @@ pub fn initialize_engine(callback_size: u16, sample_rate: u32) {
 }
 ```
 
-As you might expect, this got unwieldy quickly. Even with my limited experience with working on ABIs and Rust, it was obvious that this was't the structure that would be standing in the long run. Regardless, it was enough for experimentation and a proof of concept.
+As you might expect, this got unwieldy quickly. Even with my limited experience with working on ABIs and Rust, it was obvious that this wasn't the structure that would be standing in the long run. Regardless, it was enough for experimentation and a proof of concept.
 
 One design decision that emerged early though, was to let each native platform manage its own threading model. I was pushed towards this at first due to technical constraints, since creating threads in Rust for WASM targets wasn't supported at the time of writing. After letting this problem simmer though, this approach also enables finer-grained control over resource usage, which was especially important considering the main consumers of this audio engine are mobile devices where battery life and scheduling behavior matter a lot.
 

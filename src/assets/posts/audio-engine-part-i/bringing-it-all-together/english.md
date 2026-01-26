@@ -1,11 +1,51 @@
-At this point, it felt like the right time to zoom out and clean things up a bit. The first goal was to consolidate the top-level logic across platforms into something consistent. I started by rewriting the web, iOS, and Android functions that were defined by the KMP interface, borrowing what I thought were the best ideas from each implementation and applying them across the others.
+At this point, it felt like the right time to zoom out and clean things up a bit. The first goal was to consolidate the logic that was the same between all audio drivers. I started by rewriting the web, iOS, and Android functions that were defined by the KMP interface, borrowing what I thought were the best ideas from each implementation and applying them across the others.
 
-Around the same time, I had a conversation with Derek about how KMP was being used so far. We realized that while KMP had initially served mostly as an interface definition, there was another useful application for it: The logic that was shared between the native layers. That realization marked a bit of a shift. KMP was no longer just describing how things should look, it was now responsible for behavior that actually mattered.
+Around the same time, I had a conversation with [Derek](https://github.com/theextremeprogrammer), who graciously gave the opportunity to write this audio engine for his apps, about how KMP was being used so far. We realized that while KMP had initially served mostly as an interface definition, there was another useful application for it: The logic that was shared between the native layers. That realization marked a bit of a shift. KMP was no longer just describing how things should look, it was now responsible for behavior that actually mattered.
 
-By this point, the shared logic across the native layers was already fairly well defined, which made it a good fit for test-driven development (TDD). TDD helped reinforce the intent behind the behavior as it was pulled out of each native implementation and moved into Kotlin. It also made the refactor feel much safer, since changes could be validated quickly.
+By this point, the shared logic across the native layers was already fairly well defined, which made it a good fit for test-driven development (TDD). TDD helped reinforce the intent behind the behavior as it was pulled out of each native layer and moved into Kotlin. It also made the refactor feel much safer, since changes could be validated quickly. I started by creating a KMP class that would take a native audio driver as a dependency:
 
-I started by creating a KMP class that took a native audio driver as a dependency and used a mocking library to write the tests. This worked surprisingly well and made the initial progress pretty smooth. At the same time, it exposed a bit of a weakness in the KMP ecosystem. Solid, ergonomic testing libraries are still somewhat limited, and some require annotations or extra setup on the code under test.
+```kotlin
+class AudioEngine(private val driver: AudioDriver) {
+    fun start() {
+        //...
+    }
 
-Then Derek suggested something I hadn't really considered: not using a mocking library at all. That idea felt foreign at first, but after talking it through a bit, I decided to migrate off of the mocking library for the time being, and to write my own spies, stubs, etc. as needed.
+    fun stop() {
+        //...
+    }
 
-It turned out to be a really positive experience. The testing code became easier to reason about, less dependent on tooling magic, and helped me learn a bit about how testing libraries work underneath the hood. I've since continued experimenting with hand-written test doubles, and it's something I plan to keep in my toolbox moving forward, especially for this project.
+    fun startPlayback() {
+        //...
+    }
+
+    fun stopPlayback() {
+        //...
+    }
+}
+```
+
+Notice that the functions are basically taking over the functionality of what the `AudioDriver` interface was initially doing. These functions are very intuitive for those consuming the audio engine from an app, however they don't align super well with what the native layers were doing now that they had most of their logic removed. This led to a slight rewrite of the `AudioDriver` interface:
+
+```kotlin
+expect interface AudioDriver {
+    fun configureInput()
+    fun isInputThreadRunning(): Boolean
+    fun startInputThread()
+    fun stopInputThread()
+
+    // Same thing for the output
+    // ...
+
+    fun isPlaybackActive(): Boolean
+    fun startPlayback()
+    fun stopPlayback()
+}
+```
+
+Each audio driver is now only responsible for interacting with its respective audio API and managing threads. You'll notice a slight shift in language here too. To help keep myself sane and to align more with a domain-driven design naming scheme, I opted to use `input` and `output` for `producer` and `consumer`, respectively, at the native level, while reserving `producer` and `consumer` for the core.
+
+From there, I used a mocking library to write the tests. This worked surprisingly well and made the initial progress pretty smooth. At the same time, it exposed a bit of a weakness in the KMP ecosystem. Solid, ergonomic testing libraries are still somewhat limited, and some require annotations or extra setup on the code under test.
+
+Then Derek suggested something I hadn't really considered: not using a mocking library at all. That idea felt foreign at first, but after talking it through a bit, I decided to migrate off of the mocking library for the time being, and to write my own spies, stubs, etc. as needed:
+
+It turned out to be a really positive experience. The testing code became easier to reason about, less dependent on tooling magic, and helped me learn a bit about how testing libraries work underneath the hood. I've since continued experimenting with hand-written test doubles in the project, and it's something I plan to keep in my toolbox moving forward.

@@ -1,7 +1,10 @@
 import audioEnginePartIAndroidIntegrationEnglish from "../assets/posts/audio-engine-part-i/android-integration/english.md?raw"
+import audioEnginePartIAutomationAndQualityOfLifeEnglish from "../assets/posts/audio-engine-part-i/automation-and-quality-of-life/english.md?raw"
 import audioEnginePartIBringingItAllTogetherEnglish from "../assets/posts/audio-engine-part-i/bringing-it-all-together/english.md?raw"
 import audioEnginePartICleaningUpAfterYourselfEnglish from "../assets/posts/audio-engine-part-i/cleaning-up-after-yourself/english.md?raw"
 import audioEnginePartIIosIntegrationEnglish from "../assets/posts/audio-engine-part-i/ios-integration/english.md?raw"
+import audioEnginePartILessonsLearnedEnglish from "../assets/posts/audio-engine-part-i/lessons-learned/english.md?raw"
+import audioEnginePartINextStepsEnglish from "../assets/posts/audio-engine-part-i/next-steps/english.md?raw"
 import audioEnginePartITheCoreNotTheMovieEnglish from "../assets/posts/audio-engine-part-i/the-core-not-the-movie/english.md?raw"
 import audioEnginePartITheIdeaEnglish from "../assets/posts/audio-engine-part-i/the-idea/english.md?raw"
 import audioEnginePartITheInnerWorkingsOFAudioSystemsEnglish from "../assets/posts/audio-engine-part-i/the-inner-workings-of-audio-systems/english.md?raw"
@@ -15,12 +18,12 @@ export const posts: Post[] = [
   {
     id: "audio-engine-part-i",
     title: {
-      english: "Audio Engine (Part I)",
-      german: "Audio-Engine (Teil I)",
+      english: "Audio Engine — Part I",
+      german: "Audio-Engine — Teil I",
     },
-    datePosted: new Date(2025, 0, 20),
+    datePosted: new Date(2025, 0, 27),
     preview: {
-      english: "Exploring the design and implementation of the fundamental components of a cross-platform audio engine for iOS, Android, and Web — ranging from technology selection to nitty gritty implementation challenges",
+      english: "Exploring the design and implementation of the fundamental components of a cross-platform audio engine for iOS, Android, and web — ranging from technology selection to nitty-gritty implementation challenges",
       german: "Erkundung des Designs und der Implementierung der grundlegenden Komponenten einer plattformübergreifenden Audio-Engine für iOS, Android und das Web — von der Technologieauswahl bis hin zu detaillierten Herausforderungen bei der Implementierung.",
     },
     sections: [
@@ -130,7 +133,7 @@ export const posts: Post[] = [
           german: "Automatisierung und Entwickler-Ergonomie",
         },
         content: {
-          english: "",
+          english: audioEnginePartIAutomationAndQualityOfLifeEnglish,
           german: "",
         },
       },
@@ -141,7 +144,7 @@ export const posts: Post[] = [
           german: "Erkenntnisse",
         },
         content: {
-          english: "",
+          english: audioEnginePartILessonsLearnedEnglish,
           german: "",
         },
       },
@@ -152,7 +155,7 @@ export const posts: Post[] = [
           german: "Wie es weitergeht",
         },
         content: {
-          english: "",
+          english: audioEnginePartINextStepsEnglish,
           german: "",
         },
       },
